@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.10"
 pandas = "^1.5.3"
 openai-whisper = "^20230124"
-pysimplegui = "^4.60.4"
+streamlit = "^1.19.0"
 
 [tool.poetry.scripts]
 my-script = "leia:main"

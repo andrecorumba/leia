@@ -6,102 +6,106 @@ import pandas as pd
 
 import sqlite3
 
-import PySimpleGUI as sg
+import streamlit as st
 
-import tkinter
 
-def transcreve_pasta(pasta, nome_saida, modelo):
+def transcreve_pasta(pasta, tabela, modelo):
     # Carrega o modelo 'base'. Para carregar outros modelos mais precisos substitua por 'small' ou 'large'
     # O tempo de execução será maior a depender do modelo
     # Mais info: https://github.com/openai/whisper
     model = whisper.load_model(modelo)
     
-    i = 1
-    quantidade = len(os.listdir(pasta))
+    arquivos_opus = []
 
-    for nome_arquivo in os.listdir(pasta):
+    for arquivo in os.listdir(pasta):
+        if arquivo.endswith(".opus"):
+            arquivos_opus.append(arquivo)
+
+    quantidade = len(arquivos_opus)
+
+    st.write(f"Encontrados {quantidade} arquivos .opus na pasta.")
+
+    for nome_arquivo in arquivos_opus:
         try:
-            if nome_arquivo.endswith(".opus"):
-                print(f"Transcrevendo {i} de {quantidade}")
+            st.warning(f"Transcrevendo {nome_arquivo}")
             
-                result =  model.transcribe(os.path.join(pasta,nome_arquivo))
+            result =  model.transcribe(os.path.join(pasta,nome_arquivo))
             
-                dic_transcricao = {'arquivo'     : [nome_arquivo],
-                                   'transcricao' : [result['text']]}
+            dic_transcricao = {'arquivo'     : [nome_arquivo],
+                               'transcricao' : [result['text']]}
             
-                df = pd.DataFrame(dic_transcricao)
+            df = pd.DataFrame(dic_transcricao)
 
-                # estabelece conexão com o banco de dados SQLite
-                conn = sqlite3.connect(f'/Users/andreluiz/projetos/leia/saidas/{nome_saida}.db')
+            # estabelece conexão com o banco de dados SQLite
+            conn = sqlite3.connect('../banco-de-dados/leia.db')
 
-                # escreve o DataFrame na tabela SQLite usando o método to_sql()
-                df.to_sql(name='tb_transcricoes', con=conn, if_exists='append', index=False)
+            # escreve o DataFrame na tabela SQLite usando o método to_sql()
+            df.to_sql(tabela, con=conn, if_exists='append', index=False)
 
-                # fecha a conexão com o banco de dados
-                conn.close()
-            
-                print(f"Banco de dados gravado com sucesso!")
-            
-                i=i+1
+            # fecha a conexão com o banco de dados
+            conn.close()
+
+            st.success(f"Arquivo Transcrito: {nome_arquivo}")
+
         except Exception as e:
-            print(f"Algo deu errado", e)
+            st.error(f"Algo deu errado")
 
-def exporta_csv(nome_saida):
+@st.cache_data
+def exporta_csv(tabela):
     # estabelece conexão com o banco de dados SQLite
-    conn = sqlite3.connect(f'/Users/andreluiz/projetos/leia/saidas/{nome_saida}.db')
+    conn = sqlite3.connect('../banco-de-dados/leia.db')
 
-    query = 'SELECT * FROM tb_transcricoes'
+    query = f'SELECT * FROM {tabela}'
 
     df = pd.read_sql(query, conn)
 
-    df.to_csv(f'/Users/andreluiz/projetos/leia/saidas/{nome_saida}.csv', sep=';', encoding='utf-8', index=False)
+    arquivo_csv = f'../saidas/{tabela}.csv'
 
-    print("Arquivo CSV Gerado")
+    return df.to_csv(sep=';', encoding='utf-8', index=False)
 
-def criar_gui():
-    # implemetar interface GUI para carregar e transcrever os arquivos
-    sg.theme('LightBrown')  # Definindo o tema da interface
 
-    # Criando o layout da interface
-    layout = [[sg.Text('Digite o caminho da pasta:')],
-              [sg.Input(key='-FOLDER-', enable_events=True), sg.FolderBrowse()],
-              [sg.Text('Selecione o tipo de saída:')],
-              [sg.Radio('Arquivo TXT', 'RADIO1', key='-TXT-', default=True),
-               sg.Radio('Planilha Excel', 'RADIO1', key='-EXCEL-'),
-               sg.Radio('PDF', 'RADIO1', key='-PDF-')],
-              [sg.Button('Transcrever'), sg.Button('Cancelar')]]
+def leia_arquivo(nome_arquivo, bytes_data, modelo, tabela):
+    model = whisper.load_model(modelo)
+     
+    result =  model.transcribe(bytes_data)
+            
+    dic_transcricao = {'arquivo'     : [nome_arquivo],
+                       'transcricao' : [result['text']]}
+            
+    df = pd.DataFrame(dic_transcricao)
 
-    # Criando a janela
-    window = sg.Window('Transcrição de Pasta', layout)
+    # estabelece conexão com o banco de dados SQLite
+    conn = sqlite3.connect('../banco-de-dados/leia.db')
 
-    # Loop principal da interface
-    while True:
-        event, values = window.read()
-        if event == sg.WIN_CLOSED or event == 'Cancelar':  # Se a janela for fechada ou o botão 'Cancelar' for pressionado
-            break
-        if event == 'Transcrever':  # Se o botão 'Transcrever' for pressionado
-            folder_path = values['-FOLDER-']
-            txt_output = values['-TXT-']
-            excel_output = values['-EXCEL-']
-            pdf_output = values['-PDF-']
-            # Implementar a lógica de transcrição aqui
-            # Dependendo do tipo de saída selecionado, a saída deve ser salva em um arquivo TXT, Excel ou PDF
-            sg.popup('Transcrição concluída!')
+    # escreve o DataFrame na tabela SQLite usando o método to_sql()
+    df.to_sql(name=tabela, con=conn, if_exists='append', index=False)
 
-    window.close()  # Fechando a janela
+    # fecha a conexão com o banco de dados
+    conn.close()
 
+    st.success("Dados transcritos com sucesso!")
+    
 
 def main():
-    #pasta = input("Informe o caminho da pasta com os arquivos a serem transcritos (.opus): ")
-    #nome_saida = input("Informe um nome para o banco de dados de saida: ")
     pasta = '/Users/andreluiz/projetos/leia/entradas/audios'
-    nome_saida = 'oper_432'
     modelo = 'base'
-    #transcreve_pasta(pasta, nome_saida, modelo)
-    #criar_gui()
-    #exporta_csv(nome_saida)
-    tkinter.Tcl().eval('info patchlevel')
-    
+
+    st.title('LEIA - Trascrição de áudio e vídeos')
+
+    tabela = st.text_input("Nome para esses itens (ex.: caso1. Não use espaços ou caracteres especiais)")
+
+    tipo = st.radio("Escolha a forma de transcrição", ('Pasta', 'Arquivo'))
+
+    if tipo == 'Pasta':
+        pasta = st.text_input('Informe o caminho da pasta (ex.: /home/audios/conversas)')
+
+        if st.button('Transcrever'):
+            transcreve_pasta(pasta, tabela, modelo)
+            arquivo_csv = exporta_csv(tabela)
+            st.download_button(label="Baixar CSV", data=arquivo_csv, file_name=f'{tabela}.csv', mime='text/csv')
+    else:
+        uploaded_files = st.file_uploader("Faça upload dos seus áudios aqui", type=["opus"], accept_multiple_files=True)
+        #st.write(uploaded_files.name)
 
 if __name__ == '__main__':
     main()
