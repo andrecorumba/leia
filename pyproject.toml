@@ -11,6 +11,7 @@ pandas = "^1.5.3"
 openai-whisper = "^20230124"
 streamlit = "^1.19.0"
 streamlit-option-menu = "^0.3.2"
+pydub = "^0.25.1"
 
 [tool.poetry.scripts]
 my-script = "leia:main"
