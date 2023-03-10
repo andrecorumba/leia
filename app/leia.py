@@ -3,6 +3,7 @@ import whisper
 import pandas as pd
 import sqlite3
 import streamlit as st
+from streamlit_option_menu import option_menu
 
 
 def transcribe_folder(folder, case_name, type_model):
@@ -77,14 +78,16 @@ def main():
     
     st.title('LEIA - Trascrição de áudio e vídeos')
 
-    bar = st.sidebar
-
-    option = bar.selectbox('O que você deseja fazer?',
-                          ('Selecione','Transcrever Novos', 'Consultar'))
-    
-    if option == 'Selecione':
+    with st.sidebar:
+        option = option_menu("App Leia", 
+                         options=["Sobre", "Transcrever", "Arquivos Cellebrite", "Analisar"],
+                         icons=['house', 'body-text', 'phone', 'binoculars'],
+                         menu_icon="app-indicator", default_index=0,
+        )
+                             
+    if option == 'Sobre':
         select()
-    elif option == 'Transcrever Novos':
+    elif option == 'Transcrever':
         type_model = 'base'  # Whisper Model. Use 'small' or 'large' for more accurate models
         st.subheader('Transcrever novos arquivos')
         case_name = st.text_input("Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)")
@@ -93,8 +96,8 @@ def main():
             folder = st.text_input('Informe o caminho da pasta (ex.: /home/audios/conversas)')
             if st.button('Transcrever'):
                 df = transcribe_folder(folder, case_name, type_model)
-    elif option == 'Consultar':
-        st.subheader('Consultar')
+    elif option == 'Analisar':
+        st.subheader('Analisar')
         consult()
 
     

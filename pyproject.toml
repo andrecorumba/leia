@@ -10,10 +10,14 @@ python = "^3.10"
 pandas = "^1.5.3"
 openai-whisper = "^20230124"
 streamlit = "^1.19.0"
+streamlit-option-menu = "^0.3.2"
 
 [tool.poetry.scripts]
 my-script = "leia:main"
 
+
+[tool.poetry.group.dev.dependencies]
+ignr = "^2.2"
 
 [build-system]
 requires = ["poetry-core"]
