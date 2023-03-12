@@ -1,9 +1,7 @@
 import streamlit as st
 
 def about():
-    st.subheader('Selecione uma opção no menu lateral.')
-    st.text('''
-    O Programa LEIA é um software de transcrição de áudio e vídeo.
-    Você pode transcrever novos arquivos ou consultar casos já transcritos.
-    Documentação em: https://github.com/andrecorumba/leia
-    ''')
+    st.image('../images/logo.png', width=200)
+    with open('../README.md') as f:
+        readme = f.read()
+    st.markdown(readme, unsafe_allow_html=True)

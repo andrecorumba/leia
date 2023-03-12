@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 import whisper
-import pandas as pd
 
 def clean_folder(folder_path):
     with st.spinner(f"Removendo arquivos temporários..."):
@@ -14,12 +13,15 @@ def clean_folder(folder_path):
                 st.error(f"Erro ao remover {file_path} devido a {e}")
 
 def select_model():   
-    type_model = st.select_slider('Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever', ['tiny','base', 'small', 'medium','large'], )
+    type_model = st.select_slider('Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever', 
+                                  ['tiny','base', 'small', 'medium','large'], )
     return type_model
 
 def adjust_settings(upload_path, download_path):
-    st.subheader('Instalar Modelos')
+    st.subheader('Instalar Modelos de Aprendizagem de Máquina')
     type_model =  select_model()
+    database_path = '../db'
+
     if st.button('Instalar'):
         with st.spinner(f"Instalando modelo {type_model} ... 💫"):
             whisper.load_model(type_model)
@@ -34,4 +36,13 @@ def adjust_settings(upload_path, download_path):
                 clean_folder(upload_path)
                 clean_folder(download_path)
                 st.success(f"Todos os arquivos temporários foram removidos com sucesso!")
+
+    if os.listdir(database_path):
+        temp_files = len(os.listdir(database_path))
+        st.subheader('Casos Arquivados')
+        st.write(f"Foram encontrados {temp_files} arquivos de casos arquivados. Clique no botão abaixo se quiser removê-los.")
+        if st.button('Remover casos arquivados'):
+            with st.spinner(f"Removendo casos arquivados ... 💫"):
+                clean_folder(database_path)
+                st.success(f"Todos os casosforam removidos com sucesso!")
         

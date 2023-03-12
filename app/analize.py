@@ -4,14 +4,14 @@ import pandas as pd
 import sqlite3
 
 def analize():
-    case_list = os.listdir('/Users/andreluiz/projetos/leia/db/')
+    case_list = os.listdir('../db/')
 
     case_name = st.selectbox('Selecione o caso', case_list)
 
     if case_name:
         if st.button('Consultar'):
             try:
-                conn = sqlite3.connect(f'/Users/andreluiz/projetos/leia/db/{case_name}')
+                conn = sqlite3.connect(f'../db/{case_name}')
                 table_name = case_name.replace('.db', '')
                 query = f'SELECT * FROM {table_name}'
                 df = pd.read_sql(query, conn)

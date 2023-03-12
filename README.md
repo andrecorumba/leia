@@ -1,5 +1,10 @@
-# Projeto LEIA
-Transcritor de Áudio e Vídeo
+# Projeto LeIA
+O LeIA é uma aplicação que usa modelos de inteligência artificial da openAI para transcrição de áudio e vídeo.
+Você pode transcrever novos arquivos ou consultar casos já transcritos.
+Documentação em: https://github.com/andrecorumba/leia
+
+## Versão do Python
+Projeto implementado na versão 3.10.10.
 
 ## Bibliotecas usadas no Projeto: 
 os: biblioteca usada para interagir com o sistema operacional, permitindo manipular caminhos de arquivos, diretórios, variáveis ​​de ambiente, etc.
@@ -12,3 +17,6 @@ pydub: biblioteca usada para trabalhar com arquivos de áudio, permitindo manipu
 
 ## Requitos Importantes
 É necessário instalar na máquina o aplicativo ffmpeg que serve para conversão de vários tipos de áudios e é requisito para uso da biblioteca whisper. Faça o download em: https://ffmpeg.org. No MacOS instalamos a versão 5.2 por meio do Homebrew: brew install ffmpeg.
+
+# Logo
+Imagem do logo criada por inteligência artificial DALL-E https://labs.openai.com/

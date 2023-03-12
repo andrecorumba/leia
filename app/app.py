@@ -13,8 +13,7 @@ import transcribe_file
 def main(): 
     upload_path = "/Users/andreluiz/projetos/leia/uploads"
     download_path = "/Users/andreluiz/projetos/leia/downloads"  
-    
-    st.title('LEIA - Trascrição de áudio e vídeos')
+        
     with st.sidebar:
         option = option_menu("Selecione", 
                          options=["Sobre", 
@@ -30,7 +29,7 @@ def main():
                                 'binoculars',
                                 'wrench'],
                          menu_icon="app-indicator", default_index=0,
-        )                           
+        )                       
     if option == 'Sobre':
         about.about()
 
