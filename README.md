@@ -1,7 +1,8 @@
 # Projeto LeIA
 O LeIA é uma aplicação que usa modelos de inteligência artificial da openAI para transcrição de áudio e vídeo.
 Você pode transcrever novos arquivos ou consultar casos já transcritos.
-Documentação em: https://github.com/andrecorumba/leia
+Repositório em: https://github.com/andrecorumba/leia
+Documentação em: https://andrecorumba.github.io/leia/
 
 ## Versão do Python
 Projeto implementado na versão 3.10.10.
