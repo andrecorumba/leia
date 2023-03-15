@@ -6,6 +6,20 @@ import streamlit as st
 
 
 def transcribe_folder(folder, case_name, type_model):
+    ''' 
+    Transcreve todos os arquivos .opus de uma pasta e os insere em um banco de dados.
+    
+    Parameters:
+        folder (str): Caminho da pasta onde os arquivos de áudio estão armazenados.
+        case_name (str): Nome do caso a ser criado.
+        type_model (str): Nome do modelo de aprendizagem de máquina a ser usado na transcrição.
+    
+    Example:
+        >>> transcribe_folder('../uploads', 'caso_teste', 'base') 
+    
+    Returns:
+        (dataframe): Dataframe com o nome dos arquivos de áudio e suas respectivas transcrições.
+    '''
     model = whisper.load_model(type_model)
     file_list = []
     table_name = f'{case_name}_{type_model}'

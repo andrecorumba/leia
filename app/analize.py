@@ -4,6 +4,16 @@ import pandas as pd
 import sqlite3
 
 def analize():
+    '''
+    Consulta os casos cadastrados. 
+    A função é chamada no arquivo app.py e apresenta na tela o resultado da consulta.
+    
+    Parameters:
+        None
+
+    Returns:
+       (None): None
+    '''
     case_list = os.listdir('../db/')
 
     case_name = st.selectbox('Selecione o caso', case_list)

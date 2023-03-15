@@ -11,6 +11,14 @@ import transcribe_folder
 import transcribe_file
 
 def main(): 
+    '''
+    Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+    O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
+    As páginas são chamadas a partir da opção selecionada no menu lateral.
+
+    Parameters:
+        (None): None
+    '''
     upload_path = "/Users/andreluiz/projetos/leia/uploads"
     download_path = "/Users/andreluiz/projetos/leia/downloads"  
         
@@ -82,7 +90,6 @@ def main():
     elif option == 'Configurações':
         st.subheader('Configurações')
         settings.adjust_settings(upload_path, download_path)
-
-    
+  
 if __name__ == '__main__':
     main()

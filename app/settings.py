@@ -3,6 +3,18 @@ import streamlit as st
 import whisper
 
 def clean_folder(folder_path):
+    '''
+    Remove todos os arquivos temporários usados pela aplicação.
+
+    Parameters:
+        folder_path (str): Caminho da pasta onde os arquivos temporários estão armazenados.
+
+    Returns:
+        (None): None
+
+    Example:
+        >>> clean_folder('../uploads')
+    '''
     with st.spinner(f"Removendo arquivos temporários..."):
         for filename in os.listdir(folder_path):
             file_path = os.path.join(folder_path, filename)
@@ -13,11 +25,29 @@ def clean_folder(folder_path):
                 st.error(f"Erro ao remover {file_path} devido a {e}")
 
 def select_model():   
+    '''
+    Interface para o usuário selecionar o modelo de aprendizagem de máquina a ser usado na transcrição.
+
+    Parameters:
+        (None): None
+    
+    Returns:
+        (str): Nome do modelo de aprendizagem de máquina selecionado.
+    '''
     type_model = st.select_slider('Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever', 
                                   ['tiny','base', 'small', 'medium','large'], )
     return type_model
 
 def adjust_settings(upload_path, download_path):
+    ''' 
+    Interface para o usuário ajustar as configurações da aplicação.
+
+    Parameters:
+        upload_path (str): Caminho da pasta onde os arquivos de áudio são armazenados.
+    
+    Returns:
+        (None): None
+    '''
     st.subheader('Instalar Modelos de Aprendizagem de Máquina')
     type_model =  select_model()
     database_path = '../db'
