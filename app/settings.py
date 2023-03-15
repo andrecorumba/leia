@@ -50,7 +50,7 @@ def adjust_settings(upload_path, download_path):
     '''
     st.subheader('Instalar Modelos de Aprendizagem de Máquina')
     type_model =  select_model()
-    database_path = '../db'
+    database_path = './db'
 
     if st.button('Instalar'):
         with st.spinner(f"Instalando modelo {type_model} ... 💫"):

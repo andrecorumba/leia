@@ -33,7 +33,7 @@ def transcribe_folder(folder, case_name, type_model):
     quantity = len(file_list)
     st.write(f"Encontrados {quantity} arquivos de áudio na pasta.")
 
-    conn = sqlite3.connect(f'../db/{table_name}.db')
+    conn = sqlite3.connect(f'./db/{table_name}.db')
 
     for file_name in file_list:
         try:

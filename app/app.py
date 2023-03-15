@@ -52,6 +52,7 @@ def main():
                     df = transcribe_folder.transcribe_folder(folder, case_name, type_model)
  
     elif option == 'Arquivos Cellebrite':
+        st.subheader('Arquivos Cellebrite')
         st.write('Em breve')
  
     elif option == 'Transcrever Arquivo':
@@ -94,6 +95,6 @@ def main():
     elif option == 'Configurações':
         st.subheader('Configurações')
         settings.adjust_settings(upload_path, download_path)
-  
+   
 if __name__ == '__main__':
     main()
