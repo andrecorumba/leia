@@ -3,7 +3,7 @@ import streamlit as st
 import os
 from pydub import AudioSegment
 
-def to_mp3(audio_file, output_audio_file, upload_path, download_path):
+def to_mp3(audio_file, output_audio_file, upload_path):
     '''
     Transforma um arquivo de áudio ou vídeo em mp3.
 
@@ -20,11 +20,8 @@ def to_mp3(audio_file, output_audio_file, upload_path, download_path):
         >>> to_mp3('audio.avi', 'audio.mp3', '/home/audios', '/home/audios')
         'audio.mp3'
     '''
-    if os.path.splitext(audio_file.name)[1] == ".mp3":
-        return audio_file.name
-
     audio_data = AudioSegment.from_file(os.path.join(upload_path, audio_file.name))
-    output_file_path = os.path.join(download_path, os.path.splitext(output_audio_file)[0] + ".mp3")
+    output_file_path = os.path.join(upload_path, os.path.splitext(output_audio_file)[0] + ".mp3")
     audio_data.export(output_file_path, format="mp3")
 
     return output_audio_file

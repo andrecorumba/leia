@@ -19,8 +19,8 @@ def main():
     Parameters:
         (None): None
     '''
-    upload_path = "/Users/andreluiz/projetos/leia/uploads"
-    download_path = "/Users/andreluiz/projetos/leia/downloads"  
+    upload_path = "./uploads"
+    download_path = "./downloads"  
         
     with st.sidebar:
         option = option_menu("Selecione", 
@@ -31,7 +31,7 @@ def main():
                                   "Analisar",
                                   "Configurações"],
                          icons=['house',
-                                'body-text',
+                                'whatsapp',
                                 'file-play-fill',
                                 'phone',
                                 'binoculars',
@@ -52,7 +52,7 @@ def main():
                     df = transcribe_folder.transcribe_folder(folder, case_name, type_model)
  
     elif option == 'Arquivos Cellebrite':
-        ...
+        st.write('Em breve')
  
     elif option == 'Transcrever Arquivo':
         file_transcribe = ''
@@ -66,17 +66,21 @@ def main():
             with open(os.path.join(upload_path,uploaded_file.name),"wb") as f:
                 f.write((uploaded_file).getbuffer())
             
-            output_audio_file = uploaded_file.name.split('.')[0] + '.mp3'
-            output_audio_file = transcribe_file.to_mp3(uploaded_file, output_audio_file, upload_path, download_path)
+            if os.path.splitext(uploaded_file.name)[1] == ".mp3":
+                output_audio_file = uploaded_file.name
+            
+            else:
+                output_audio_file = uploaded_file.name.split('.')[0] + '.mp3'
+                output_audio_file = transcribe_file.to_mp3(uploaded_file, output_audio_file, upload_path)
 
-            audio_file = open(os.path.join(download_path,output_audio_file), 'rb')
+            audio_file = open(os.path.join(upload_path,output_audio_file), 'rb')
             audio_bytes = audio_file.read()
 
             st.audio(audio_bytes)
             
             if st.button('Transcrever'):
                 with st.spinner(f"Processando Audio ... 💫"):
-                    file_transcribe = transcribe_file.transcribe_file(output_audio_file, download_path, type_model)
+                    file_transcribe = transcribe_file.transcribe_file(output_audio_file, upload_path, type_model)
                     st.write(file_transcribe)
                     st.download_button(label="Baixar Transcrição", 
                                        data=file_transcribe,
