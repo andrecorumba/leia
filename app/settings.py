@@ -38,7 +38,7 @@ def select_model():
                                   ['tiny','base', 'small', 'medium','large'], )
     return type_model
 
-def adjust_settings(upload_path, download_path):
+def adjust_settings(upload_path, database_path):
     ''' 
     Interface para o usuário ajustar as configurações da aplicação.
 
@@ -50,21 +50,19 @@ def adjust_settings(upload_path, download_path):
     '''
     st.subheader('Instalar Modelos de Aprendizagem de Máquina')
     type_model =  select_model()
-    database_path = './db'
 
     if st.button('Instalar'):
         with st.spinner(f"Instalando modelo {type_model} ... 💫"):
             whisper.load_model(type_model)
             st.success(f"Modelo {type_model} instalado com sucesso!")
     
-    if os.listdir(upload_path) or os.listdir(download_path):
-        temp_files = len(os.listdir(upload_path)) + len(os.listdir(download_path))
+    if os.listdir(upload_path):
+        temp_files = len(os.listdir(upload_path))
         st.subheader('Arquivos Temporários')
         st.write(f"Foram encontrados {temp_files} arquivos temporários. Clique no botão abaixo para removê-los.")
         if st.button('Remover arquivos temporários'):
             with st.spinner(f"Removendo arquivos temporários ... 💫"):
                 clean_folder(upload_path)
-                clean_folder(download_path)
                 st.success(f"Todos os arquivos temporários foram removidos com sucesso!")
 
     if os.listdir(database_path):
