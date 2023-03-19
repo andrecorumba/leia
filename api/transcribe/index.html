@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../transcribe_cellebrite/">
+        <link rel="prev" href="../settings/">
       
       
-        <link rel="next" href="../transcribe_folder/">
+        <link rel="next" href="../transcribe_cellebrite/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Transcribe file - LeIA</title>
+        <title>Transcribe - LeIA</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app.transcribe_file" class="md-skip">
+        <a href="#app.transcribe" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Transcribe file
+              Transcribe
             
           </span>
         </div>
@@ -286,8 +286,50 @@
   
   
     <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
-        App
+      <a href="../app_desktop/" class="md-nav__link">
+        App desktop
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app_web/" class="md-nav__link">
+        App web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio_formats/" class="md-nav__link">
+        Audio formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        Database
       </a>
     </li>
   
@@ -312,20 +354,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../transcribe_cellebrite/" class="md-nav__link">
-        Transcribe cellebrite
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -336,12 +364,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Transcribe file
+          Transcribe
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Transcribe file
+        Transcribe
       </a>
       
         
@@ -358,22 +386,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_file" class="md-nav__link">
-    app.transcribe_file
+  <a href="#app.transcribe" class="md-nav__link">
+    app.transcribe
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_file.to_mp3" class="md-nav__link">
-    to_mp3()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_file.transcribe_file" class="md-nav__link">
-    transcribe_file()
+  <a href="#app.transcribe.transcribe" class="md-nav__link">
+    transcribe()
   </a>
   
 </li>
@@ -393,8 +414,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../transcribe_folder/" class="md-nav__link">
-        Transcribe folder
+      <a href="../transcribe_cellebrite/" class="md-nav__link">
+        Transcribe cellebrite
       </a>
     </li>
   
@@ -432,22 +453,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_file" class="md-nav__link">
-    app.transcribe_file
+  <a href="#app.transcribe" class="md-nav__link">
+    app.transcribe
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_file.to_mp3" class="md-nav__link">
-    to_mp3()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_file.transcribe_file" class="md-nav__link">
-    transcribe_file()
+  <a href="#app.transcribe.transcribe" class="md-nav__link">
+    transcribe()
   </a>
   
 </li>
@@ -470,12 +484,12 @@
   
 
 
-  <h1>Transcribe file</h1>
+  <h1>Transcribe</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="app.transcribe_file"></a>
+<a id="app.transcribe"></a>
   <div class="doc doc-contents first">
 
   
@@ -494,15 +508,15 @@
 
 
 
-<h2 id="app.transcribe_file.to_mp3" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">to_mp3</span><span class="p">(</span><span class="n">audio_file</span><span class="p">,</span> <span class="n">output_audio_file</span><span class="p">,</span> <span class="n">upload_path</span><span class="p">,</span> <span class="n">download_path</span><span class="p">)</span></code>
+<h2 id="app.transcribe.transcribe" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">transcribe</span><span class="p">(</span><span class="n">file_list</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">type_model</span><span class="p">,</span> <span class="n">type_transcribe</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Transforma um arquivo de áudio ou vídeo em mp3.</p>
+      <p>Função que transcreve uma lista de arquivos de áudio ou vídeo.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -516,41 +530,41 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>audio_file</code></td>
+          <td><code>file_list</code></td>
           <td>
-                <code>str</code>
+                <code>list</code>
           </td>
-          <td><p>Nome do arquivo de áudio ou vídeo.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>output_audio_file</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Nome do arquivo de áudio ou vídeo.</p></td>
+          <td><p>Lista de arquivos de áudio ou vídeo.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>upload_path</code></td>
+          <td><code>folder</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho da pasta de upload onde o arquivo está.</p></td>
+          <td><p>Caminho da pasta onde os arquivos estão.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>download_path</code></td>
+          <td><code>type_model</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho da pasta de download onde o arquivo será salvo.</p></td>
+          <td><p>Tipo de modelo a ser utilizado.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>type_transcribe</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Tipo de transcrição a ser realizada.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -568,29 +582,17 @@
     </thead>
     <tbody>
         <tr>
-<td><code>output_audio_file</code></td>          <td>
-                <code>str</code>
+<td><code>dic_transcribe</code></td>          <td>
+                <code>dict</code>
           </td>
-          <td><p>Nome do arquivo de áudio ou vídeo em mp3.</p></td>
+          <td><p>Dicionário com o nome do arquivo e o texto transcrito.</p></td>
         </tr>
     </tbody>
   </table>
 
-<details class="example">
-  <summary>Example</summary>
-  <blockquote>
-<blockquote>
-<blockquote>
-<p>to_mp3('audio.avi', 'audio.mp3', '/home/audios', '/home/audios')
-'audio.mp3'</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</details>
       <details class="quote">
-        <summary>Source code in <code>app/transcribe_file.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
-<span class="normal"> 7</span>
+        <summary>Source code in <code>app/transcribe.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
@@ -613,126 +615,9 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_mp3</span><span class="p">(</span><span class="n">audio_file</span><span class="p">,</span> <span class="n">output_audio_file</span><span class="p">,</span> <span class="n">upload_path</span><span class="p">,</span> <span class="n">download_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Transforma um arquivo de áudio ou vídeo em mp3.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        audio_file (str): Nome do arquivo de áudio ou vídeo.</span>
-<span class="sd">        output_audio_file (str): Nome do arquivo de áudio ou vídeo.</span>
-<span class="sd">        upload_path (str): Caminho da pasta de upload onde o arquivo está.</span>
-<span class="sd">        download_path (str): Caminho da pasta de download onde o arquivo será salvo.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        output_audio_file (str): Nome do arquivo de áudio ou vídeo em mp3.</span>
-
-<span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; to_mp3(&#39;audio.avi&#39;, &#39;audio.mp3&#39;, &#39;/home/audios&#39;, &#39;/home/audios&#39;)</span>
-<span class="sd">        &#39;audio.mp3&#39;</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">audio_file</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.mp3&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">audio_file</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="n">audio_data</span> <span class="o">=</span> <span class="n">AudioSegment</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_path</span><span class="p">,</span> <span class="n">audio_file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
-    <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">output_audio_file</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.mp3&quot;</span><span class="p">)</span>
-    <span class="n">audio_data</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;mp3&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">output_audio_file</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="app.transcribe_file.transcribe_file" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">transcribe_file</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">type_model</span><span class="p">)</span></code>
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Transcreve um arquivo de áudio ou vídeo.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>uploaded_file</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Nome do arquivo de áudio ou vídeo.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>folder</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Caminho da pasta onde o arquivo está.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>type_model</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Tipo de modelo a ser utilizado.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>result</code></td>          <td>
-                <code>str</code>
-          </td>
-          <td><p>Texto transcrito.</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-<details class="example">
-  <summary>Example</summary>
-  <blockquote>
-<blockquote>
-<blockquote>
-<p _Olá_="'Olá," _text_:="'text':" bem_="bem?'" tudo="tudo">transcribe_file('audio.mp3', '/home/audios', 'base')</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</details>
-      <details class="quote">
-        <summary>Source code in <code>app/transcribe_file.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -758,33 +643,70 @@
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transcribe_file</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">type_model</span><span class="p">):</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">file_list</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">type_model</span><span class="p">,</span> <span class="n">type_transcribe</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Transcreve um arquivo de áudio ou vídeo.</span>
+<span class="sd">    Função que transcreve uma lista de arquivos de áudio ou vídeo.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        uploaded_file (str): Nome do arquivo de áudio ou vídeo.</span>
-<span class="sd">        folder (str): Caminho da pasta onde o arquivo está.</span>
+<span class="sd">        file_list (list): Lista de arquivos de áudio ou vídeo.</span>
+<span class="sd">        folder (str): Caminho da pasta onde os arquivos estão.</span>
 <span class="sd">        type_model (str): Tipo de modelo a ser utilizado.</span>
+<span class="sd">        type_transcribe (str): Tipo de transcrição a ser realizada.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        result (str): Texto transcrito.</span>
-
-<span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; transcribe_file(&#39;audio.mp3&#39;, &#39;/home/audios&#39;, &#39;base&#39;)</span>
-<span class="sd">        {&#39;text&#39;: &#39;Olá, tudo bem?&#39;}</span>
+<span class="sd">        dic_transcribe (dict): Dicionário com o nome do arquivo e o texto transcrito.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">whisper</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">type_model</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo </span><span class="si">{</span><span class="n">uploaded_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>         
-        <span class="n">result</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">uploaded_file</span><span class="p">))</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arquivo Transcrito: </span><span class="si">{</span><span class="n">uploaded_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1">#st.write(result[&#39;text&#39;])</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algo deu errado&quot;</span><span class="p">)</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+    <span class="c1"># Load whisper model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">whisper</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">type_model</span><span class="p">)</span>
+
+    <span class="n">dic_transcribe</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;arquivo&#39;</span>     <span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+                      <span class="s1">&#39;transcricao&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">]}</span>
+
+    <span class="c1"># Check type of transcribe</span>
+    <span class="k">if</span> <span class="n">type_transcribe</span> <span class="o">==</span> <span class="s1">&#39;folder&#39;</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+
+            <span class="k">try</span><span class="p">:</span>
+
+                <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   
+                <span class="n">result</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">file</span><span class="p">))</span> 
+                <span class="n">dic_transcribe</span><span class="p">[</span><span class="s1">&#39;arquivo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+                <span class="n">dic_transcribe</span><span class="p">[</span><span class="s1">&#39;transcricao&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arquivo Transcrito: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algo deu errado&quot;</span><span class="p">)</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="c1"># Check if file_list uploaded</span>
+    <span class="k">elif</span> <span class="n">type_transcribe</span> <span class="o">==</span> <span class="s1">&#39;file_list&#39;</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+
+            <span class="k">try</span><span class="p">:</span>
+
+                <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   
+                <span class="n">result</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> 
+                <span class="n">dic_transcribe</span><span class="p">[</span><span class="s1">&#39;arquivo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">dic_transcribe</span><span class="p">[</span><span class="s1">&#39;transcricao&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arquivo Transcrito: </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algo deu errado&quot;</span><span class="p">)</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">dic_transcribe</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

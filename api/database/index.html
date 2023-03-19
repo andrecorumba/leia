@@ -9,15 +9,17 @@
       
       
       
-        <link rel="prev" href="../transcribe_file/">
+        <link rel="prev" href="../audio_formats/">
       
+      
+        <link rel="next" href="../settings/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Transcribe folder - LeIA</title>
+        <title>Database - LeIA</title>
       
     
     
@@ -67,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app.transcribe_folder" class="md-skip">
+        <a href="#app.database" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Transcribe folder
+              Database
             
           </span>
         </div>
@@ -284,9 +286,95 @@
   
   
     <li class="md-nav__item">
-      <a href="../app/" class="md-nav__link">
-        App
+      <a href="../app_desktop/" class="md-nav__link">
+        App desktop
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app_web/" class="md-nav__link">
+        App web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio_formats/" class="md-nav__link">
+        Audio formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Database
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Database
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#app.database" class="md-nav__link">
+    app.database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app.database.write_to_db" class="md-nav__link">
+    write_to_db()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -312,8 +400,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../transcribe_cellebrite/" class="md-nav__link">
-        Transcribe cellebrite
+      <a href="../transcribe/" class="md-nav__link">
+        Transcribe
       </a>
     </li>
   
@@ -326,67 +414,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../transcribe_file/" class="md-nav__link">
-        Transcribe file
+      <a href="../transcribe_cellebrite/" class="md-nav__link">
+        Transcribe cellebrite
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Transcribe folder
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Transcribe folder
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_folder" class="md-nav__link">
-    app.transcribe_folder
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_folder.transcribe_folder" class="md-nav__link">
-    transcribe_folder()
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -423,15 +453,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_folder" class="md-nav__link">
-    app.transcribe_folder
+  <a href="#app.database" class="md-nav__link">
+    app.database
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_folder.transcribe_folder" class="md-nav__link">
-    transcribe_folder()
+  <a href="#app.database.write_to_db" class="md-nav__link">
+    write_to_db()
   </a>
   
 </li>
@@ -454,12 +484,12 @@
   
 
 
-  <h1>Transcribe folder</h1>
+  <h1>Database</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="app.transcribe_folder"></a>
+<a id="app.database"></a>
   <div class="doc doc-contents first">
 
   
@@ -478,15 +508,15 @@
 
 
 
-<h2 id="app.transcribe_folder.transcribe_folder" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">transcribe_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">type_model</span><span class="p">)</span></code>
+<h2 id="app.database.write_to_db" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">write_to_db</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Transcreve todos os arquivos .opus de uma pasta e os insere em um banco de dados.</p>
+      <p>Recebe o nome do arquivo e o texto transcrito e salva no banco de dados.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -500,11 +530,11 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>folder</code></td>
+          <td><code>db_path</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho da pasta onde os arquivos de áudio estão armazenados.</p></td>
+          <td><p>Caminho da pasta onde o banco de dados está.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -514,55 +544,39 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>Nome do caso a ser criado.</p></td>
+          <td><p>Nome do caso.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>type_model</code></td>
+          <td><code>table_name</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Nome do modelo de aprendizagem de máquina a ser usado na transcrição.</p></td>
+          <td><p>Nome da tabela.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
-    </tbody>
-  </table>
-
-<details class="example">
-  <summary>Example</summary>
-  <blockquote>
-<blockquote>
-<blockquote>
-<p>transcribe_folder('../uploads', 'caso_teste', 'base') </p>
-</blockquote>
-</blockquote>
-</blockquote>
-</details>
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
         <tr>
+          <td><code>df</code></td>
           <td>
-                <code>dataframe</code>
+                <code>pandas.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td><p>Dataframe com o nome dos arquivos de áudio e suas respectivas transcrições.</p></td>
+          <td><p>Dataframe com os dados a serem salvos.</p></td>
+          <td>
+              <em>required</em>
+          </td>
         </tr>
     </tbody>
   </table>
 
       <details class="quote">
-        <summary>Source code in <code>app/transcribe_folder.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
+        <summary>Source code in <code>app/database.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
@@ -583,88 +597,30 @@
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transcribe_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">type_model</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
-<span class="sd">    Transcreve todos os arquivos .opus de uma pasta e os insere em um banco de dados.</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_to_db</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Recebe o nome do arquivo e o texto transcrito e salva no banco de dados.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        folder (str): Caminho da pasta onde os arquivos de áudio estão armazenados.</span>
-<span class="sd">        case_name (str): Nome do caso a ser criado.</span>
-<span class="sd">        type_model (str): Nome do modelo de aprendizagem de máquina a ser usado na transcrição.</span>
-
-<span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; transcribe_folder(&#39;../uploads&#39;, &#39;caso_teste&#39;, &#39;base&#39;) </span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        (dataframe): Dataframe com o nome dos arquivos de áudio e suas respectivas transcrições.</span>
+<span class="sd">        db_path (str): Caminho da pasta onde o banco de dados está.</span>
+<span class="sd">        case_name (str): Nome do caso.</span>
+<span class="sd">        table_name (str): Nome da tabela.</span>
+<span class="sd">        df (pandas.DataFrame): Dataframe com os dados a serem salvos.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">whisper</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">type_model</span><span class="p">)</span>
-    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">table_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">type_model</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="n">df_export</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>  <span class="s1">&#39;arquivo&#39;</span>     <span class="p">:</span> <span class="p">[],</span>
-                                <span class="s1">&#39;transcricao&#39;</span> <span class="p">:</span> <span class="p">[]})</span>
 
-    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.opus&quot;</span><span class="p">):</span>
-            <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="c1"># Create connection</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">))</span>
 
-    <span class="n">quantity</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
-    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Encontrados </span><span class="si">{</span><span class="n">quantity</span><span class="si">}</span><span class="s2"> arquivos de áudio na pasta.&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>        
+        <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trancrição Gravada no Banco de Dados. Acesse o menu Analisar para consultar.&quot;</span><span class="p">)</span>
 
-    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../db/</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">.db&#39;</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>         
-            <span class="n">result</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="n">file_name</span><span class="p">))</span>
-            <span class="n">dic_transcribe</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;arquivo&#39;</span>     <span class="p">:</span> <span class="p">[</span><span class="n">file_name</span><span class="p">],</span>
-                             <span class="s1">&#39;transcricao&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]]}</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic_transcribe</span><span class="p">)</span>
-
-            <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-            <span class="n">df_export</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_export</span><span class="p">,</span> <span class="n">df</span><span class="p">])</span>
-            <span class="c1">#st.success(f&quot;Arquivo Transcrito: {file_name}&quot;)</span>
-
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algo deu errado&quot;</span><span class="p">)</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Algo deu errado. Não foi possível gravar no banco de dados.&quot;</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
     <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-    <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">quantity</span><span class="si">}</span><span class="s2"> Áudios Transcritos! Acesse o menu Analisar para consultar.&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">df_export</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
