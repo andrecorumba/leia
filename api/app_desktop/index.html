@@ -400,6 +400,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../token_leia/" class="md-nav__link">
+        Token leia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
       </a>
@@ -651,7 +665,21 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 <span class="normal">140</span>
 <span class="normal">141</span>
 <span class="normal">142</span>
-<span class="normal">143</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Versão Desktop. Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. </span>
 <span class="sd">    O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.</span>
@@ -774,7 +802,21 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Analisar&#39;</span><span class="p">:</span>
 
         <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Analisar&#39;</span><span class="p">)</span>
-        <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
+
+        <span class="c1"># List cases</span>
+        <span class="n">case_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+        <span class="n">case_name</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s1">&#39;Selecione o caso&#39;</span><span class="p">,</span> <span class="n">case_list</span><span class="p">)</span>
+
+        <span class="c1"># Check if case was selected</span>
+        <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Consultar&#39;</span><span class="p">):</span>
+
+                <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">)</span>
+
+        <span class="k">else</span> <span class="p">:</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Você não possui casos cadastrados.&quot;</span><span class="p">)</span>
 
     <span class="c1"># Option Settings</span>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Configurações&#39;</span><span class="p">:</span>

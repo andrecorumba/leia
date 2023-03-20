@@ -400,6 +400,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../token_leia/" class="md-nav__link">
+        Token leia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
       </a>
@@ -522,8 +536,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 
       <details class="quote">
         <summary>Source code in <code>app/app_web.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 14</span>
-<span class="normal"> 15</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
 <span class="normal"> 16</span>
 <span class="normal"> 17</span>
 <span class="normal"> 18</span>
@@ -611,7 +624,19 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
-<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Versão Web. Possui menos funcionalidade do que a versão principal. Main é a função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. </span>
 <span class="sd">    O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.</span>
@@ -624,7 +649,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
     <span class="c1"># Side Menu</span>
     <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
 
-        <span class="n">option</span> <span class="o">=</span> <span class="n">option_menu</span><span class="p">(</span><span class="s2">&quot;Versão Desktop&quot;</span><span class="p">,</span> 
+        <span class="n">option</span> <span class="o">=</span> <span class="n">option_menu</span><span class="p">(</span><span class="s2">&quot;Versão Web&quot;</span><span class="p">,</span> 
                          <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sobre&quot;</span><span class="p">,</span> 
                                   <span class="s2">&quot;Transcrever Arquivos&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;Analisar&quot;</span><span class="p">,</span>
@@ -646,7 +671,8 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">:</span>
 
         <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">)</span>
-        <span class="n">case_name</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)&quot;</span><span class="p">)</span>
+        <span class="c1">#case_name = st.text_input(&quot;Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)&quot;)</span>
+        <span class="n">case_name</span> <span class="o">=</span> <span class="n">token_leia</span><span class="o">.</span><span class="n">get_token_leia</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
 
@@ -687,6 +713,10 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
                         <span class="c1"># Write to database           </span>
                         <span class="n">database</span><span class="o">.</span><span class="n">write_to_db</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 
+                        <span class="c1"># Print Token</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Copie e GUARDE o Token a Seguir. Você precisará dele para acessar as transcrições&quot;</span><span class="p">)</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="n">case_name</span><span class="p">)</span>
+
                         <span class="c1"># Delete temporary files</span>
                         <span class="n">settings</span><span class="o">.</span><span class="n">clean_folder</span><span class="p">(</span><span class="n">upload_path</span><span class="p">)</span>
 
@@ -694,7 +724,13 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Analisar&#39;</span><span class="p">:</span>
 
         <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Analisar&#39;</span><span class="p">)</span>
-        <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
+
+        <span class="n">case_name</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Informe o Token do caso que deseja analisar&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check if token exists</span>
+        <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
+
+                <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">)</span>
 
     <span class="c1"># Option Settings</span>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Configurações&#39;</span><span class="p">:</span>

@@ -400,6 +400,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../token_leia/" class="md-nav__link">
+        Token leia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
       </a>
@@ -509,7 +523,7 @@
 
 
 <h2 id="app.analize.analize" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">)</span></code>
 
 </h2>
 
@@ -535,7 +549,7 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho para o banco de dados.</p></td>
+          <td><p>Caminho para o banco de dados</p></td>
           <td>
               <em>required</em>
           </td>
@@ -545,7 +559,17 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
           <td>
                 <code>str</code>
           </td>
-          <td><p>Nome da tabela.</p></td>
+          <td><p>Nome da tabela</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>case_name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Nome do caso</p></td>
           <td>
               <em>required</em>
           </td>
@@ -579,53 +603,31 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Consulta os casos cadastrados. </span>
 <span class="sd">    A função é chamada no arquivo app.py e apresenta na tela o resultado da consulta.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        db_path (str): Caminho para o banco de dados.</span>
-<span class="sd">        table_name (str): Nome da tabela.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">        db_path (str): Caminho para o banco de dados</span>
+<span class="sd">        table_name (str): Nome da tabela</span>
+<span class="sd">        case_name (str): Nome do caso</span>
+<span class="sd">    &#39;&#39;&#39;</span>      
+    <span class="k">try</span><span class="p">:</span>
 
-    <span class="n">case_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">))</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
+        <span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baixar CSV&quot;</span><span class="p">,</span> 
+                            <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                            <span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_name</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> 
+                            <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
 
-    <span class="n">case_name</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s1">&#39;Selecione o caso&#39;</span><span class="p">,</span> <span class="n">case_list</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-    <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
-
-        <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Consultar&#39;</span><span class="p">):</span>
-
-            <span class="k">try</span><span class="p">:</span>
-
-                <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">))</span>
-                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">&#39;</span>
-                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-                <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
-                <span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baixar CSV&quot;</span><span class="p">,</span> 
-                                   <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-                                   <span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_name</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> 
-                                   <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
-
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>           
-    <span class="k">else</span> <span class="p">:</span>
-
-        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Você não possui casos cadastrados.&quot;</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>           
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
