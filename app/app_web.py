@@ -18,8 +18,8 @@ def main():
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
     '''
-    upload_path = "../uploads"
-    db_path = '../db/'
+    upload_path = "./uploads"
+    db_path = './db/'
     table_name = 'db_transcripts'
         
     # Side Menu
