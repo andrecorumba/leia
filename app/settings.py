@@ -9,9 +9,6 @@ def clean_folder(folder_path):
     Parameters:
         folder_path (str): Caminho da pasta onde os arquivos temporários estão armazenados.
 
-    Returns:
-        (None): None
-
     Example:
         >>> clean_folder('../uploads')
     '''
@@ -27,9 +24,6 @@ def clean_folder(folder_path):
 def select_model():   
     '''
     Interface para o usuário selecionar o modelo de aprendizagem de máquina a ser usado na transcrição.
-
-    Parameters:
-        (None): None
     
     Returns:
         (str): Nome do modelo de aprendizagem de máquina selecionado.
@@ -44,9 +38,6 @@ def adjust_settings(upload_path, database_path):
 
     Parameters:
         upload_path (str): Caminho da pasta onde os arquivos de áudio são armazenados.
-    
-    Returns:
-        (None): None
     '''
     st.subheader('Instalar Modelos de Aprendizagem de Máquina')
     type_model =  select_model()

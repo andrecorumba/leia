@@ -10,15 +10,13 @@ import settings
 import transcribe
 import audio_formats
 import database
+import token_leia
 
 def main(): 
     '''
-    Versão Desktop. Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+    Versão Web. Possui menos funcionalidade do que a versão principal. Main é a função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
-
-    Parameters:
-        (None): None
     '''
     upload_path = "../uploads"
     db_path = '../db/'
@@ -27,7 +25,7 @@ def main():
     # Side Menu
     with st.sidebar:
         
-        option = option_menu("Versão Desktop", 
+        option = option_menu("Versão Web", 
                          options=["Sobre", 
                                   "Transcrever Arquivos",
                                   "Analisar",
@@ -49,8 +47,9 @@ def main():
     elif option == 'Transcrever Arquivos':
         
         st.subheader('Transcrever Arquivos')
-        case_name = st.text_input("Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)")
-        
+        #case_name = st.text_input("Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)")
+        case_name = token_leia.get_token_leia()
+
         if case_name:
             
             type_model = settings.select_model()
@@ -90,6 +89,10 @@ def main():
                         # Write to database           
                         database.write_to_db(db_path, case_name, table_name, df)
 
+                        # Print Token
+                        st.success(f"Copie e GUARDE o Token a Seguir. Você precisará dele para acessar as transcrições")
+                        st.code(case_name)
+
                         # Delete temporary files
                         settings.clean_folder(upload_path)
 
@@ -97,7 +100,13 @@ def main():
     elif option == 'Analisar':
        
         st.subheader('Analisar')
-        analize.analize(db_path, table_name)
+
+        case_name = st.text_input("Informe o Token do caso que deseja analisar")
+        
+        # Check if token exists
+        if case_name:
+                
+                analize.analize(db_path, table_name, case_name)
     
     # Option Settings
     elif option == 'Configurações':

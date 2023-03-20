@@ -16,9 +16,6 @@ def main():
     Versão Desktop. Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
-
-    Parameters:
-        (None): None
     '''
     upload_path = "../uploads"
     db_path = '../db/'
@@ -137,8 +134,22 @@ def main():
     elif option == 'Analisar':
        
         st.subheader('Analisar')
-        analize.analize(db_path, table_name)
+        
+        # List cases
+        case_list = os.listdir(db_path)
+        case_name = st.selectbox('Selecione o caso', case_list)
+
+        # Check if case was selected
+        if case_name:
+        
+            if st.button('Consultar'):
+                
+                analize.analize(db_path, table_name, case_name)
     
+        else :
+            
+            st.error("Você não possui casos cadastrados.")
+
     # Option Settings
     elif option == 'Configurações':
        

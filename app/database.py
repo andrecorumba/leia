@@ -10,11 +10,9 @@ def write_to_db(db_path, case_name, table_name, df):
 
     Parameters:
         db_path (str): Caminho da pasta onde o banco de dados está.
-        file_name (str): Nome do arquivo de áudio ou vídeo.
-        df (DataFrame): Dataframe com o nome do arquivo e o texto transcrito.
-
-    Returns:
-        None
+        case_name (str): Nome do caso.
+        table_name (str): Nome da tabela.
+        df (pandas.DataFrame): Dataframe com os dados a serem salvos.
     '''
     
     # Create connection

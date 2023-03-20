@@ -11,9 +11,6 @@ def find_opus_files(zip_file_path, db_file_path):
     Parameters:
         zip_file_path (str): Caminho do arquivo compactado pelo Cellebrite.
         db_file_path (str): Caminho do banco de dados onde os arquivos .opus serão armazenados.
-
-    Returns:
-        (None): None
     '''
     conn = sqlite3.connect(db_file_path)
     cursor = conn.cursor()
