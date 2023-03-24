@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../app_desktop/">
+        <link rel="prev" href="../analize/">
       
       
         <link rel="next" href="../audio_formats/">
@@ -284,20 +284,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../app_desktop/" class="md-nav__link">
-        App desktop
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -386,6 +372,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../folders/" class="md-nav__link">
+        Folders
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../settings/" class="md-nav__link">
         Settings
       </a>
@@ -416,20 +416,6 @@
     <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../transcribe_cellebrite/" class="md-nav__link">
-        Transcribe cellebrite
       </a>
     </li>
   
@@ -530,15 +516,13 @@
 
   <div class="doc doc-contents ">
   
-      <p>Versão Web. Possui menos funcionalidade do que a versão principal. Main é a função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+      <p>Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
 O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
 As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 
       <details class="quote">
         <summary>Source code in <code>app/app_web.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 17</span>
 <span class="normal"> 18</span>
 <span class="normal"> 19</span>
 <span class="normal"> 20</span>
@@ -636,107 +620,181 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
-<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Versão Web. Possui menos funcionalidade do que a versão principal. Main é a função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. </span>
+<span class="sd">    Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. </span>
 <span class="sd">    O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.</span>
 <span class="sd">    As páginas são chamadas a partir da opção selecionada no menu lateral.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">upload_path</span> <span class="o">=</span> <span class="s2">&quot;../uploads&quot;</span>
-    <span class="n">db_path</span> <span class="o">=</span> <span class="s1">&#39;../db/&#39;</span>
-    <span class="n">table_name</span> <span class="o">=</span> <span class="s1">&#39;db_transcripts&#39;</span>
+
+    <span class="n">main_folder_path</span> <span class="o">=</span> <span class="s2">&quot;etc&quot;</span>
 
     <span class="c1"># Side Menu</span>
-    <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
-
+    <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>   
         <span class="n">option</span> <span class="o">=</span> <span class="n">option_menu</span><span class="p">(</span><span class="s2">&quot;Versão Web&quot;</span><span class="p">,</span> 
                          <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sobre&quot;</span><span class="p">,</span> 
-                                  <span class="s2">&quot;Transcrever Arquivos&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;Áudio&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;Vídeo&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;Zip&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;Analisar&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;Configurações&quot;</span><span class="p">],</span>
+
+                         <span class="c1"># Icons from https://icons.getbootstrap.com/</span>
                          <span class="n">icons</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;house&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;file-earmark-music-fill&#39;</span><span class="p">,</span>
                                 <span class="s1">&#39;file-play-fill&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;file-zip-fill&#39;</span><span class="p">,</span>
                                 <span class="s1">&#39;binoculars&#39;</span><span class="p">,</span>
                                 <span class="s1">&#39;wrench&#39;</span><span class="p">],</span>
-                         <span class="n">menu_icon</span><span class="o">=</span><span class="s2">&quot;display&quot;</span><span class="p">,</span> <span class="n">default_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="p">)</span>                       
+                         <span class="n">menu_icon</span><span class="o">=</span><span class="s2">&quot;cloud&quot;</span><span class="p">,</span> <span class="n">default_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>   
 
     <span class="c1"># Pages</span>
-    <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Sobre&#39;</span><span class="p">:</span>
-
+    <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Sobre&#39;</span><span class="p">:</span> 
         <span class="n">about</span><span class="o">.</span><span class="n">about</span><span class="p">()</span>
 
 
     <span class="c1"># Option Transcribe Files</span>
-    <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Áudio&quot;</span> <span class="ow">or</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Vídeo&quot;</span> <span class="ow">or</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Zip&quot;</span><span class="p">:</span>  
+        <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">)</span>   
+        <span class="n">type_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">select_model</span><span class="p">()</span>
 
-        <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">)</span>
-        <span class="c1">#case_name = st.text_input(&quot;Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)&quot;)</span>
-        <span class="n">case_name</span> <span class="o">=</span> <span class="n">token_leia</span><span class="o">.</span><span class="n">get_token_leia</span><span class="p">()</span>
+        <span class="c1"># Only audio files</span>
+        <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Áudio&quot;</span><span class="p">:</span>     
+            <span class="n">uploaded_file_list</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s1">&#39;Selecione os arquivos de áudio&#39;</span><span class="p">,</span> 
+                                                    <span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;opus&quot;</span><span class="p">,</span><span class="s2">&quot;wav&quot;</span><span class="p">,</span><span class="s2">&quot;mp3&quot;</span><span class="p">,</span><span class="s2">&quot;ogg&quot;</span><span class="p">,</span><span class="s2">&quot;wma&quot;</span><span class="p">],</span>
+                                                    <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Only video files</span>
+        <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Vídeo&quot;</span><span class="p">:</span>     
+            <span class="n">uploaded_file_list</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s1">&#39;Selecione os arquivos de vídeo&#39;</span><span class="p">,</span> 
+                                                    <span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mp4&quot;</span><span class="p">,</span> <span class="s2">&quot;m4a&quot;</span><span class="p">,</span> <span class="s2">&quot;avi&quot;</span><span class="p">,</span> <span class="s2">&quot;mov&quot;</span><span class="p">,</span> <span class="s2">&quot;wmv&quot;</span><span class="p">],</span>
+                                                    <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
-
-            <span class="n">type_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">select_model</span><span class="p">()</span>
-
-            <span class="c1"># Only audio and video files</span>
+        <span class="c1"># Only zip files</span>
+        <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Zip&quot;</span><span class="p">:</span>
             <span class="n">uploaded_file_list</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s1">&#39;Selecione os arquivos de áudio ou vídeo&#39;</span><span class="p">,</span> 
-                                             <span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;opus&quot;</span><span class="p">,</span><span class="s2">&quot;wav&quot;</span><span class="p">,</span><span class="s2">&quot;mp3&quot;</span><span class="p">,</span><span class="s2">&quot;ogg&quot;</span><span class="p">,</span><span class="s2">&quot;wma&quot;</span><span class="p">,</span><span class="s2">&quot;aac&quot;</span><span class="p">,</span><span class="s2">&quot;flac&quot;</span><span class="p">,</span>
-                                                   <span class="s2">&quot;mp4&quot;</span><span class="p">,</span><span class="s2">&quot;flv&quot;</span><span class="p">,</span> <span class="s2">&quot;m4a&quot;</span><span class="p">,</span> <span class="s2">&quot;avi&quot;</span><span class="p">,</span> <span class="s2">&quot;mov&quot;</span><span class="p">,</span> <span class="s2">&quot;wmv&quot;</span><span class="p">,</span> <span class="s2">&quot;mkv&quot;</span><span class="p">,</span> <span class="s2">&quot;webm&quot;</span><span class="p">],</span>
-                                             <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                                            <span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="s2">&quot;ufed&quot;</span><span class="p">],</span>
+                                            <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="c1"># Check if files were uploaded</span>
-            <span class="k">if</span> <span class="n">uploaded_file_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Check if files were uploaded</span>
+        <span class="k">if</span> <span class="n">uploaded_file_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Transcrever&#39;</span><span class="p">):</span>
+                <span class="c1"># Create token</span>
+                <span class="n">token</span> <span class="o">=</span> <span class="n">token_leia</span><span class="o">.</span><span class="n">get_token_leia</span><span class="p">()</span>
 
-                <span class="k">for</span> <span class="n">uploaded_file</span> <span class="ow">in</span> <span class="n">uploaded_file_list</span><span class="p">:</span>
+                <span class="c1"># Crate token folders</span>
+                <span class="n">token_folder_path</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span> <span class="o">=</span> <span class="n">folders</span><span class="o">.</span><span class="n">create_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">)</span>
 
-                    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arquivo selecionado: </span><span class="si">{</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Zip&quot;</span><span class="p">:</span>     
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temporary_folder_path</span><span class="p">,</span> 
+                                           <span class="n">uploaded_file_list</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 
-                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_path</span><span class="p">,</span> <span class="n">uploaded_file</span><span class="o">.</span><span class="n">name</span><span class="p">),</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">uploaded_file_list</span><span class="p">)</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
 
-                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">uploaded_file</span><span class="p">)</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
+                    <span class="n">zip_file_list</span> <span class="o">=</span> <span class="n">extract_zip</span><span class="o">.</span><span class="n">extract_media_files</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temporary_folder_path</span><span class="p">,</span> 
+                                                                                 <span class="n">uploaded_file_list</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> 
+                                                                                 <span class="n">original_folder_path</span><span class="p">)</span>
 
-                    <span class="c1"># Convert to mp3</span>
-                    <span class="n">mp3_audio_file</span> <span class="o">=</span> <span class="n">audio_formats</span><span class="o">.</span><span class="n">to_mp3</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">,</span> <span class="n">upload_path</span><span class="p">)</span>
+                    <span class="c1">#st.write(zip_file_list)</span>
 
-                    <span class="c1"># Play audio</span>
-                    <span class="n">audio_bytes</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_path</span><span class="p">,</span> <span class="n">mp3_audio_file</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-                    <span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">(</span><span class="n">audio_bytes</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">uploaded_file_list</span><span class="p">:</span>
+                        <span class="c1"># Save all files with original name</span>
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_folder_path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">),</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
 
-                <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Transcrever&#39;</span><span class="p">):</span>
+                <span class="c1"># Transcribe folder</span>
+                <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo Arquivos ... 💫&quot;</span><span class="p">):</span>
+                    <span class="c1"># Transcribe file list</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transcribe</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">original_folder_path</span><span class="p">,</span> <span class="n">type_model</span><span class="p">))</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-                    <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcrevendo Arquivos ... 💫&quot;</span><span class="p">):</span>
+                    <span class="c1"># Write to database           </span>
+                    <span class="n">database</span><span class="o">.</span><span class="n">write_to_db</span><span class="p">(</span><span class="n">database_folder_path</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 
-                        <span class="c1"># Transcribe file list</span>
-                        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transcribe</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">uploaded_file_list</span><span class="p">,</span> <span class="n">upload_path</span><span class="p">,</span> <span class="n">type_model</span><span class="p">,</span> <span class="s1">&#39;file_list&#39;</span><span class="p">))</span>
-                        <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                    <span class="c1"># Print Token</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;IMPORTANTE ⚠️&quot;</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Copie e GUARDE o Token a Seguir. &quot;</span><span class="p">)</span> 
+                    <span class="n">st</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Você precisará dele para acessar as transcrições.&quot;</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;O Token é um código único que identifica essa trasncrição.&quot;</span> 
+                            <span class="s2">&quot;Ele é gerado automaticamente e é único para cada conjunto de transcrições.&quot;</span> 
+                            <span class="s2">&quot;NÃO O PERCA! Sem o Token, não será possível acessar essas transcrições.&quot;</span> 
+                            <span class="s2">&quot;Os arquivos de áudio e vídeo não são salvos no banco de dados.&quot;</span>
+                            <span class="s2">&quot;As transcrições ficam salvas no banco de dados por 30 dias.&quot;</span>
+                            <span class="s2">&quot;Após esse período, os dados são apagados.&quot;</span>
+                            <span class="s2">&quot;Você pode acessar as transcrições a qualquer momento, basta inserir o Token no menu Analisar.&quot;</span>
+                            <span class="s2">&quot;Você poderá apagar as transcrições a qualquer momento no menu Configurações.&quot;</span>
+                            <span class="s2">&quot;Acesse o menu Analisar ao lado e insira o token.&quot;</span><span class="p">)</span>
 
-                        <span class="c1"># Write to database           </span>
-                        <span class="n">database</span><span class="o">.</span><span class="n">write_to_db</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-
-                        <span class="c1"># Print Token</span>
-                        <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Copie e GUARDE o Token a Seguir. Você precisará dele para acessar as transcrições&quot;</span><span class="p">)</span>
-                        <span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="n">case_name</span><span class="p">)</span>
-
-                        <span class="c1"># Delete temporary files</span>
-                        <span class="n">settings</span><span class="o">.</span><span class="n">clean_folder</span><span class="p">(</span><span class="n">upload_path</span><span class="p">)</span>
-
-    <span class="c1"># Option Analize           </span>
+    <span class="c1"># Option Analize          </span>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Analisar&#39;</span><span class="p">:</span>
-
         <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Analisar&#39;</span><span class="p">)</span>
-
-        <span class="n">case_name</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Informe o Token do caso que deseja analisar&quot;</span><span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Informe o Token do caso que deseja analisar&quot;</span><span class="p">)</span>
 
         <span class="c1"># Check if token exists</span>
-        <span class="k">if</span> <span class="n">case_name</span><span class="p">:</span>
-
-                <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">token</span><span class="p">:</span>
+            <span class="n">token_folder_path</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span> <span class="o">=</span> <span class="n">folders</span><span class="o">.</span><span class="n">get_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">)</span>
+            <span class="n">analize</span><span class="o">.</span><span class="n">analize</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span><span class="p">)</span>
 
     <span class="c1"># Option Settings</span>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s1">&#39;Configurações&#39;</span><span class="p">:</span>
 
-        <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Configurações&#39;</span><span class="p">)</span>
-        <span class="n">settings</span><span class="o">.</span><span class="n">adjust_settings</span><span class="p">(</span><span class="n">upload_path</span><span class="p">,</span> <span class="n">db_path</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;Configurações&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Option Install Models. DON&#39;T USE IN PRODUCTION</span>
+        <span class="c1">#settings.install_models()</span>
+
+        <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Remove Tokens&quot;</span><span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Informe o Token das trancrições que deseja remover&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check if token exists</span>
+        <span class="k">if</span> <span class="n">token</span><span class="p">:</span>    
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">token_folder_path</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span> <span class="o">=</span> <span class="n">folders</span><span class="o">.</span><span class="n">get_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">)</span>
+                <span class="n">settings</span><span class="o">.</span><span class="n">remove_token</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">)</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Transcrições removidas com sucesso!&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Token não encontrado. Verifique se o token está correto.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

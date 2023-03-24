@@ -286,20 +286,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../app_desktop/" class="md-nav__link">
-        App desktop
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../app_web/" class="md-nav__link">
         App web
       </a>
@@ -330,6 +316,20 @@
     <li class="md-nav__item">
       <a href="../database/" class="md-nav__link">
         Database
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folders/" class="md-nav__link">
+        Folders
       </a>
     </li>
   
@@ -416,20 +416,6 @@
     <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../transcribe_cellebrite/" class="md-nav__link">
-        Transcribe cellebrite
       </a>
     </li>
   
@@ -542,9 +528,10 @@
     </thead>
     <tbody>
         <tr>
-<td><code>str</code></td>          <td>
+<td><code>Token</code></td>          <td>
+                <code>str</code>
           </td>
-          <td><p>Token aleatório</p></td>
+          <td><p>Token aleatório de 32 caracteres.</p></td>
         </tr>
     </tbody>
   </table>
@@ -564,7 +551,7 @@
 <span class="sd">    Função que gera um token aleatório para identificar o caso de uso do app.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        str: Token aleatório</span>
+<span class="sd">        Token (str): Token aleatório de 32 caracteres.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">)])</span>

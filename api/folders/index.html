@@ -9,15 +9,17 @@
       
       
       
-        <link rel="prev" href="../transcribe/">
+        <link rel="prev" href="../database/">
       
+      
+        <link rel="next" href="../settings/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Transcribe cellebrite - LeIA</title>
+        <title>Folders - LeIA</title>
       
     
     
@@ -67,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app.transcribe_cellebrite" class="md-skip">
+        <a href="#app.folders" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Transcribe cellebrite
+              Folders
             
           </span>
         </div>
@@ -284,20 +286,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../app_desktop/" class="md-nav__link">
-        App desktop
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../app_web/" class="md-nav__link">
         App web
       </a>
@@ -329,6 +317,71 @@
       <a href="../database/" class="md-nav__link">
         Database
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Folders
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Folders
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#app.folders" class="md-nav__link">
+    app.folders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app.folders.create_folders" class="md-nav__link">
+    create_folders()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app.folders.get_folders" class="md-nav__link">
+    get_folders()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -376,64 +429,6 @@
 
             
           
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Transcribe cellebrite
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Transcribe cellebrite
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_cellebrite" class="md-nav__link">
-    app.transcribe_cellebrite
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#app.transcribe_cellebrite.find_opus_files" class="md-nav__link">
-    find_opus_files()
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -465,15 +460,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_cellebrite" class="md-nav__link">
-    app.transcribe_cellebrite
+  <a href="#app.folders" class="md-nav__link">
+    app.folders
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.transcribe_cellebrite.find_opus_files" class="md-nav__link">
-    find_opus_files()
+  <a href="#app.folders.create_folders" class="md-nav__link">
+    create_folders()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app.folders.get_folders" class="md-nav__link">
+    get_folders()
   </a>
   
 </li>
@@ -496,12 +498,12 @@
   
 
 
-  <h1>Transcribe cellebrite</h1>
+  <h1>Folders</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="app.transcribe_cellebrite"></a>
+<a id="app.folders"></a>
   <div class="doc doc-contents first">
 
   
@@ -520,17 +522,15 @@
 
 
 
-<h2 id="app.transcribe_cellebrite.find_opus_files" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">find_opus_files</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="n">db_file_path</span><span class="p">)</span></code>
+<h2 id="app.folders.create_folders" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">create_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
-      <p>Encontra todos os arquivos .opus dentro de um arquivo compactado pelo Cellebrite (UFED) e os insere em um banco de dados. 
-Para maiores informações sobre o Cellebrite visite: https://www.cellebrite.com/.
-Funciona também para arquivos compactados com ZIP.</p>
+      <p>Cria as pastas necessárias para o funcionamento da aplicação.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -544,21 +544,21 @@ Funciona também para arquivos compactados com ZIP.</p>
     </thead>
     <tbody>
         <tr>
-          <td><code>zip_file_path</code></td>
+          <td><code>token</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho do arquivo compactado pelo Cellebrite.</p></td>
+          <td><p>Token do usuário.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>db_file_path</code></td>
+          <td><code>main_folder_path</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho do banco de dados onde os arquivos .opus serão armazenados.</p></td>
+          <td><p>Caminho da pasta principal.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -566,9 +566,47 @@ Funciona também para arquivos compactados com ZIP.</p>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>token_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta do token.</p></td>
+        </tr>
+        <tr>
+<td><code>database_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta do banco de dados.</p></td>
+        </tr>
+        <tr>
+<td><code>temporary_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta temporária.</p></td>
+        </tr>
+        <tr>
+<td><code>original_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta original.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
       <details class="quote">
-        <summary>Source code in <code>app/transcribe_cellebrite.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
+        <summary>Source code in <code>app/folders.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
 <span class="normal"> 6</span>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
@@ -594,33 +632,183 @@ Funciona também para arquivos compactados com ZIP.</p>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_opus_files</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="n">db_file_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
-<span class="sd">    Encontra todos os arquivos .opus dentro de um arquivo compactado pelo Cellebrite (UFED) e os insere em um banco de dados. </span>
-<span class="sd">    Para maiores informações sobre o Cellebrite visite: https://www.cellebrite.com/.</span>
-<span class="sd">    Funciona também para arquivos compactados com ZIP.</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Cria as pastas necessárias para o funcionamento da aplicação.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        zip_file_path (str): Caminho do arquivo compactado pelo Cellebrite.</span>
-<span class="sd">        db_file_path (str): Caminho do banco de dados onde os arquivos .opus serão armazenados.</span>
+<span class="sd">        token (str): Token do usuário.</span>
+<span class="sd">        main_folder_path (str): Caminho da pasta principal.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        token_folder_path (str): Caminho da pasta do token.</span>
+<span class="sd">        database_folder_path (str): Caminho da pasta do banco de dados.</span>
+<span class="sd">        temporary_folder_path (str): Caminho da pasta temporária.</span>
+<span class="sd">        original_folder_path (str): Caminho da pasta original.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_file_path</span><span class="p">)</span>
-    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS opus_files (name TEXT, path TEXT, binary BLOB)&quot;</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_file</span><span class="p">:</span>
-        <span class="c1"># percorre todas as entradas do arquivo zip</span>
-        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">zip_file</span><span class="o">.</span><span class="n">infolist</span><span class="p">():</span>
-            <span class="c1"># verifica se é um arquivo com a extensão .opus</span>
-            <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.opus&#39;</span><span class="p">):</span>
-                <span class="c1"># obtém o conteúdo do arquivo</span>
-                <span class="n">binary</span> <span class="o">=</span> <span class="n">zip_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+    <span class="c1"># Create the main folder if it doesn&#39;t exist yet</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">)</span>
 
-                <span class="c1"># insere as informações no banco de dados</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO opus_files (name, path, binary) VALUES (?, ?, ?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">filename</span><span class="p">),</span> <span class="n">binary</span><span class="p">))</span>
+    <span class="c1"># Paths to the token folder to be created</span>
+    <span class="n">token_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
 
-    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># Paths to the subfolders to be created</span>
+    <span class="n">database_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">)</span>
+    <span class="n">temporary_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;temporary&quot;</span><span class="p">)</span>
+    <span class="n">original_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;original&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create the subfolders if they don&#39;t exist yet</span>
+    <span class="k">for</span> <span class="n">subfolder_path</span> <span class="ow">in</span> <span class="p">[</span><span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">subfolder_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">token_folder_path</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="app.folders.get_folders" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>'
+Retorna os caminhos das pastas necessárias para o funcionamento da aplicação.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>token</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Token do usuário.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>main_folder_path</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta principal.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>token_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta do token.</p></td>
+        </tr>
+        <tr>
+<td><code>database_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta do banco de dados.</p></td>
+        </tr>
+        <tr>
+<td><code>temporary_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta temporária.</p></td>
+        </tr>
+        <tr>
+<td><code>original_folder_path</code></td>          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho da pasta original.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>app/folders.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_folders</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">main_folder_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;&#39;</span>
+<span class="sd">    Retorna os caminhos das pastas necessárias para o funcionamento da aplicação.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        token (str): Token do usuário.</span>
+<span class="sd">        main_folder_path (str): Caminho da pasta principal.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        token_folder_path (str): Caminho da pasta do token.</span>
+<span class="sd">        database_folder_path (str): Caminho da pasta do banco de dados.</span>
+<span class="sd">        temporary_folder_path (str): Caminho da pasta temporária.</span>
+<span class="sd">        original_folder_path (str): Caminho da pasta original.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># Get the main folder</span>
+    <span class="n">token_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+
+    <span class="c1"># Paths to the subfolders to be created</span>
+    <span class="n">database_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">)</span>
+    <span class="n">temporary_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;temporary&quot;</span><span class="p">)</span>
+    <span class="n">original_folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token_folder_path</span><span class="p">,</span> <span class="s2">&quot;original&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">token_folder_path</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

@@ -12,7 +12,7 @@
         <link rel="prev" href="../about/">
       
       
-        <link rel="next" href="../app_desktop/">
+        <link rel="next" href="../app_web/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
@@ -330,20 +330,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../app_desktop/" class="md-nav__link">
-        App desktop
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../app_web/" class="md-nav__link">
         App web
       </a>
@@ -386,6 +372,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../folders/" class="md-nav__link">
+        Folders
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../settings/" class="md-nav__link">
         Settings
       </a>
@@ -416,20 +416,6 @@
     <li class="md-nav__item">
       <a href="../transcribe/" class="md-nav__link">
         Transcribe
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../transcribe_cellebrite/" class="md-nav__link">
-        Transcribe cellebrite
       </a>
     </li>
   
@@ -523,7 +509,7 @@
 
 
 <h2 id="app.analize.analize" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">analize</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span><span class="p">)</span></code>
 
 </h2>
 
@@ -545,31 +531,41 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
     </thead>
     <tbody>
         <tr>
-          <td><code>db_path</code></td>
+          <td><code>token</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Caminho para o banco de dados</p></td>
+          <td><p>Token de acesso ao banco de dados.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>table_name</code></td>
+          <td><code>database_folder_path</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Nome da tabela</p></td>
+          <td><p>Caminho para a pasta onde estão os bancos de dados.</p></td>
           <td>
               <em>required</em>
           </td>
         </tr>
         <tr>
-          <td><code>case_name</code></td>
+          <td><code>temporary_folder_path</code></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Nome do caso</p></td>
+          <td><p>Caminho para a pasta temporária.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>original_folder_path</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho para a pasta onde estão os arquivos originais.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -579,10 +575,7 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
 
       <details class="quote">
         <summary>Source code in <code>app/analize.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
@@ -603,31 +596,90 @@ A função é chamada no arquivo app.py e apresenta na tela o resultado da consu
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">analize</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">case_name</span><span class="p">):</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">analize</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">database_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">original_folder_path</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Consulta os casos cadastrados. </span>
 <span class="sd">    A função é chamada no arquivo app.py e apresenta na tela o resultado da consulta.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">        db_path (str): Caminho para o banco de dados</span>
-<span class="sd">        table_name (str): Nome da tabela</span>
-<span class="sd">        case_name (str): Nome do caso</span>
+<span class="sd">        token (str): Token de acesso ao banco de dados.</span>
+<span class="sd">        database_folder_path (str): Caminho para a pasta onde estão os bancos de dados.</span>
+<span class="sd">        temporary_folder_path (str): Caminho para a pasta temporária.</span>
+<span class="sd">        original_folder_path (str): Caminho para a pasta onde estão os arquivos originais.</span>
+
 <span class="sd">    &#39;&#39;&#39;</span>      
-    <span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database_folder_path</span><span class="p">,</span> <span class="n">token</span><span class="p">)):</span>
 
-        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">case_name</span><span class="p">))</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
-        <span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baixar CSV&quot;</span><span class="p">,</span> 
-                            <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-                            <span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">case_name</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> 
-                            <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
 
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Connect to database</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database_folder_path</span><span class="p">,</span> <span class="n">token</span><span class="p">))</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM transcripts&#39;</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
-        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>           
+            <span class="c1"># Show dataframe</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
+
+            <span class="c1"># Download dataframe</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baixar CSV&quot;</span><span class="p">,</span> 
+                                <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                <span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;LeIA_</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> 
+                                <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Play audio</span>
+            <span class="n">file_selected</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Selecione o arquivo para ouvir o áudio&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;arquivo&#39;</span><span class="p">])</span>
+
+
+            <span class="n">mp3_audio_file</span> <span class="o">=</span> <span class="n">audio_formats</span><span class="o">.</span><span class="n">to_mp3</span><span class="p">(</span><span class="n">file_selected</span><span class="p">,</span> <span class="n">original_folder_path</span><span class="p">,</span> <span class="n">temporary_folder_path</span><span class="p">)</span>
+
+
+            <span class="c1"># Play audio</span>
+            <span class="n">audio_bytes</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temporary_folder_path</span><span class="p">,</span> <span class="n">mp3_audio_file</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">(</span><span class="n">audio_bytes</span><span class="p">)</span>
+
+
+            <span class="c1"># Close connection</span>
+            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Erro ao acessar os dados.&quot;</span><span class="p">)</span>    
+
+    <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Não foi possível acessar o banco de dados. Verifique se o Token está correto e tente novamente.&quot;</span><span class="p">)</span>       
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
