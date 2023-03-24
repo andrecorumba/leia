@@ -4,7 +4,9 @@ import os
 import pandas as pd
 import numpy as np
 
-def transcribe(file_list, folder, type_model, type_transcribe):
+from audio_formats import to_mp3_bytes
+
+def transcribe(folder, type_model):
     '''
     Função que transcreve uma lista de arquivos de áudio ou vídeo.
 
@@ -24,41 +26,27 @@ def transcribe(file_list, folder, type_model, type_transcribe):
     dic_transcribe = {'arquivo'     : [ ],
                       'transcricao' : [ ]}
 
-    # Check type of transcribe
-    if type_transcribe == 'folder':
 
-        for file in file_list:
-        
-            try:
-        
-                st.warning(f"Transcrevendo {file}")   
-                result =  model.transcribe(os.path.join(folder,file)) 
-                dic_transcribe['arquivo'].append(file)
-                dic_transcribe['transcricao'].append(result['text'])
-                st.success(f"Arquivo Transcrito: {file}")
-        
-            except Exception as e:
-        
-                st.error(f"Algo deu errado")
-                st.error(e)
+    file_list = os.listdir(folder)
+    st.write(file_list)
+
+    for file in file_list:
     
-    # Check if file_list uploaded
-    elif type_transcribe == 'file_list':
-        
-        for file in file_list:
-        
-            try:
-        
-                st.warning(f"Transcrevendo {file.name}")   
-                result =  model.transcribe(os.path.join(folder,file.name)) 
-                dic_transcribe['arquivo'].append(file.name)
-                dic_transcribe['transcricao'].append(result['text'])
-                st.success(f"Arquivo Transcrito: {file.name}")
-        
-            except Exception as e:
-        
-                st.error(f"Algo deu errado")
-                st.error(e)
+        try:
+    
+            st.warning(f"Transcrevendo {file}")   
 
-
+            result =  model.transcribe(os.path.join(folder,file)) 
+            
+            dic_transcribe['arquivo'].append(file)
+            dic_transcribe['transcricao'].append(result['text'])
+        
+            st.success(f"Arquivo Transcrito: {file}")
+    
+        except Exception as e:
+    
+            st.error(f"Algo deu errado")
+            st.error(e)
+        
     return dic_transcribe
+    

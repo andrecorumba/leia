@@ -17,8 +17,8 @@ def main():
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
     '''
-    upload_path = "../uploads"
-    db_path = '../db/'
+    upload_path = "./uploads"
+    db_path = './db/'
     table_name = 'db_transcripts'
         
     # Side Menu
@@ -27,14 +27,17 @@ def main():
         option = option_menu("Versão Desktop", 
                          options=["Sobre", 
                                   "Transcrever Pasta",
-                                  "Transcrever Arquivos",
-                                  "Arquivos Cellebrite",
+                                  "Áudio",
+                                  "Vídeo",
+                                  "Zip",
                                   "Analisar",
                                   "Configurações"],
+                         # Icons from https://icons.getbootstrap.com/
                          icons=['house',
-                                'whatsapp',
+                                'folder',
+                                'file-earmark-music-fill',
                                 'file-play-fill',
-                                'phone',
+                                'file-zip-fill',
                                 'binoculars',
                                 'wrench'],
                          menu_icon="display", default_index=0,
@@ -75,15 +78,9 @@ def main():
 
                     # Delete temporary files
                     settings.clean_folder(upload_path)
-    
-    # Option Cellebrite Files
-    elif option == 'Arquivos Cellebrite':
-        
-        st.subheader('Arquivos Cellebrite')
-        st.write('Em breve')
  
     # Option Transcribe Files
-    elif option == 'Transcrever Arquivos':
+    elif option == 'Áudio' or option == 'Vídeo':
         
         st.subheader('Transcrever Arquivos')
         case_name = st.text_input("Informe um nome para esse caso (ex.: caso1. Não use espaços ou caracteres especiais)")
@@ -94,8 +91,8 @@ def main():
 
             # Only audio and video files
             uploaded_file_list = st.file_uploader('Selecione os arquivos de áudio ou vídeo', 
-                                             type=["opus","wav","mp3","ogg","wma","aac","flac",
-                                                   "mp4","flv", "m4a", "avi", "mov", "wmv", "mkv", "webm"],
+                                             type=["opus","wav","mp3","ogg","wma",
+                                                   "mp4", "m4a", "avi", "mov", "wmv"],
                                              accept_multiple_files=True)
         
             # Check if files were uploaded
@@ -130,13 +127,19 @@ def main():
                         # Delete temporary files
                         settings.clean_folder(upload_path)
 
+    # Option Zip
+    elif option == 'Zip':
+        
+        st.subheader('Arquivos Zip')
+        st.write('Em breve')
+
     # Option Analize           
     elif option == 'Analisar':
        
         st.subheader('Analisar')
         
-        # List cases
-        case_list = os.listdir(db_path)
+        # List only files in folder
+        case_list = [f for f in os.listdir(db_path) if not f.endswith('.py')]
         case_name = st.selectbox('Selecione o caso', case_list)
 
         # Check if case was selected

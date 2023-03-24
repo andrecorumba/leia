@@ -19,8 +19,8 @@ def write_to_db(db_path, case_name, table_name, df):
     conn = sqlite3.connect(os.path.join(db_path, case_name))
 
     try:        
-        df.to_sql(table_name, con=conn, if_exists='append', index=False)
-        st.success(f"Trancrição Gravada no Banco de Dados. Acesse o menu Analisar para consultar.")
+        df.to_sql(table_name, con=conn, if_exists='replace', index=False)
+        st.success(f"Trancrição Gravada no Banco de Dados.")
 
     except Exception as e:
         st.error(f"Algo deu errado. Não foi possível gravar no banco de dados.")

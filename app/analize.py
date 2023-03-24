@@ -3,7 +3,10 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 
-def analize(db_path, table_name, case_name):
+# Import local modules
+from audio_formats import to_mp3
+
+def analize(db_path, table_name, token):
     
     '''
     Consulta os casos cadastrados. 
@@ -14,18 +17,47 @@ def analize(db_path, table_name, case_name):
         table_name (str): Nome da tabela
         case_name (str): Nome do caso
     '''      
-    try:
+    if os.path.isfile(os.path.join(db_path, token)):
 
-        conn = sqlite3.connect(os.path.join(db_path, case_name))
-        query = f'SELECT * FROM {table_name}'
-        df = pd.read_sql(query, conn)
-        st.dataframe(df) 
-        st.download_button(label="Baixar CSV", 
-                            data=df.to_csv(sep=';', encoding='utf-8', index=False),
-                            file_name=f'{case_name}.csv', 
-                            mime='text/csv')
+        try:
+            
+            # Connect to database
+            conn = sqlite3.connect(os.path.join(db_path, token))
+            query = f'SELECT * FROM {table_name}'
+            df = pd.read_sql(query, conn)
+            
+            # Show dataframe
+            st.dataframe(df) 
+            
+            # Download dataframe
+            st.download_button(label="Baixar CSV", 
+                                data=df.to_csv(sep=';', encoding='utf-8', index=False),
+                                file_name=f'LeIA_{token}.csv', 
+                                mime='text/csv')
+            
+            # Play audio
+            file_selected = st.selectbox("Selecione o arquivo para ouvir o áudio", df['arquivo'])
+            
+            temporary_mp3_path = '/Users/andreluiz/projetos/leia/uploads/temporary_mp3'
+            token_folder = '/Users/andreluiz/projetos/leia/uploads/token_files'
 
-    except Exception as e:
 
-        st.error(e)           
+            mp3_audio_file = to_mp3(file_selected, token_folder, temporary_mp3_path)
+            
+            
+            # Play audio
+            audio_bytes = open(os.path.join(temporary_mp3_path, mp3_audio_file), 'rb').read()
+            st.audio(audio_bytes)
+
+
+            # Close connection
+            conn.close()
+
+        except Exception as e:
+
+            st.error("Erro ao acessar os dados.")    
+
+    else:
+            
+            st.error("Não foi possível acessar o banco de dados. Verifique se o Token está correto e tente novamente.")       
     

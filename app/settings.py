@@ -10,7 +10,7 @@ def clean_folder(folder_path):
         folder_path (str): Caminho da pasta onde os arquivos temporários estão armazenados.
 
     Example:
-        >>> clean_folder('../uploads')
+        >>> clean_folder('/uploads')
     '''
     with st.spinner(f"Removendo arquivos temporários..."):
         for filename in os.listdir(folder_path):
@@ -47,21 +47,56 @@ def adjust_settings(upload_path, database_path):
             whisper.load_model(type_model)
             st.success(f"Modelo {type_model} instalado com sucesso!")
     
-    if os.listdir(upload_path):
-        temp_files = len(os.listdir(upload_path))
-        st.subheader('Arquivos Temporários')
-        st.write(f"Foram encontrados {temp_files} arquivos temporários. Clique no botão abaixo para removê-los.")
-        if st.button('Remover arquivos temporários'):
-            with st.spinner(f"Removendo arquivos temporários ... 💫"):
-                clean_folder(upload_path)
-                st.success(f"Todos os arquivos temporários foram removidos com sucesso!")
 
+
+def remove_token_file(token, db_path):
+    '''
+    Remove o arquivo de banco de dados.
+
+    Parameters:
+        token (str): Token da transcrição.
+        db_path (str): Caminho da pasta onde o banco de dados está.
+    '''
+    os.remove(os.path.join(db_path,token))
+
+def remove_all_db_tokens(database_path):
+    '''
+    Remove todos os arquivos de banco de dados usados pela aplicação.
+
+    Parameters:
+        database_path (str): Caminho da pasta onde os arquivos de banco de dados estão armazenados.
+    '''
+     
     if os.listdir(database_path):
+     
         temp_files = len(os.listdir(database_path))
         st.subheader('Casos Arquivados')
-        st.write(f"Foram encontrados {temp_files} arquivos de casos arquivados. Clique no botão abaixo se quiser removê-los.")
-        if st.button('Remover casos arquivados'):
-            with st.spinner(f"Removendo casos arquivados ... 💫"):
+        st.write(f"Foram encontrados {temp_files} arquivos de casos arquivados." 
+                 "Clique no botão abaixo se quiser removê-los.")
+    
+        if st.button('Remover todos os tokens arquivados'):
+            with st.spinner(f"Removendo tokens arquivados ... 💫"):
                 clean_folder(database_path)
-                st.success(f"Todos os casosforam removidos com sucesso!")
+                st.success(f"Todos os tokens foram removidos com sucesso!")
+
+def remove_all_temp_files(upload_path, temporary_mp3_path):
+    '''
+    Remove todos os arquivos temporários usados pela aplicação.
+
+    Parameters:
+        upload_path (str): Caminho da pasta onde os arquivos temporários estão armazenados.
+    '''
+
+    if os.listdir(upload_path) or os.listdir(temporary_mp3_path):
+       
+        temp_files = len(os.listdir(upload_path)) + len(os.listdir(temporary_mp3_path))
+        st.subheader('Arquivos Temporários')
+        st.write(f"Foram encontrados {temp_files} arquivos temporários. Clique no botão abaixo para removê-los.")
         
+        if st.button('Remover arquivos temporários'):
+        
+            with st.spinner(f"Removendo arquivos temporários ... 💫"):
+        
+                clean_folder(upload_path)
+                clean_folder(temporary_mp3_path)
+                st.success(f"Todos os arquivos temporários foram removidos com sucesso!")
