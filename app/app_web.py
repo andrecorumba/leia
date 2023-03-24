@@ -3,32 +3,28 @@ import pandas as pd
 import streamlit as st
 from streamlit_option_menu import option_menu
 from pydub import AudioSegment
-import io
 
 # Import local modules
 import about
 import analize
 import settings
 import transcribe
-import audio_formats
 import database
 import token_leia
 import extract_zip
+import folders
 
 def main(): 
     '''
-    Versão Web. Main é a função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+    Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
     '''
-    upload_path = "uploads/token_files/"
-    temporary_mp3_path = "uploads/temporary_mp3/"
-    db_path = 'db'
-    table_name = 'db_transcripts'
+
+    main_folder_path = "etc"
         
     # Side Menu
-    with st.sidebar:
-        
+    with st.sidebar:   
         option = option_menu("Versão Web", 
                          options=["Sobre", 
                                   "Áudio",
@@ -48,169 +44,117 @@ def main():
         )   
     
     # Pages
-    if option == 'Sobre':
-        
+    if option == 'Sobre': 
         about.about()
     
     
     # Option Transcribe Files
-    elif option == "Áudio" or option == "Vídeo":
-        
-        st.subheader('Transcrever Arquivos')
+    elif option == "Áudio" or option == "Vídeo" or option == "Zip":  
+        st.subheader('Transcrever Arquivos')   
+        type_model = settings.select_model()
+
+        # Only audio files
+        if option == "Áudio":     
+            uploaded_file_list = st.file_uploader('Selecione os arquivos de áudio', 
+                                                    type=["opus","wav","mp3","ogg","wma"],
+                                                    accept_multiple_files=True)
+        # Only video files
+        elif option == "Vídeo":     
+            uploaded_file_list = st.file_uploader('Selecione os arquivos de vídeo', 
+                                                    type=["mp4", "m4a", "avi", "mov", "wmv"],
+                                                    accept_multiple_files=True)
     
-        case_name = token_leia.get_token_leia()
+        # Only zip files
+        elif option == "Zip":
+            uploaded_file_list = st.file_uploader('Selecione os arquivos de áudio ou vídeo', 
+                                            type=["zip", "ufed"],
+                                            accept_multiple_files=False)
+       
+        # Check if files were uploaded
+        if uploaded_file_list is not None:
+            if st.button('Transcrever'):
+                # Create token
+                token = token_leia.get_token_leia()
 
-        if case_name:
-            
-            type_model = settings.select_model()
-
-            # Only audio files
-            if option == "Áudio":
+                # Crate token folders
+                token_folder_path, database_folder_path, temporary_folder_path, original_folder_path = folders.create_folders(token, main_folder_path)
                 
-                uploaded_file_list = st.file_uploader('Selecione os arquivos de áudio', 
-                                                     type=["opus","wav","mp3","ogg","wma"],
-                                                     accept_multiple_files=True)
-            # Only video files
-            elif option == "Vídeo":
+                if option == "Zip":     
+                    with open(os.path.join(temporary_folder_path, 
+                                           uploaded_file_list.name), "wb") as f:
                     
-                uploaded_file_list = st.file_uploader('Selecione os arquivos de vídeo', 
-                                                      type=["mp4", "m4a", "avi", "mov", "wmv"],
-                                                      accept_multiple_files=True)
-        
-            # Check if files were uploaded
-            if uploaded_file_list is not None:
-            
-                if st.button('Transcrever'):
+                        f.write((uploaded_file_list).getbuffer())
 
+                    zip_file_list = extract_zip.extract_media_files(os.path.join(temporary_folder_path, 
+                                                                                 uploaded_file_list.name), 
+                                                                                 original_folder_path)
+                    
+                    #st.write(zip_file_list)
+                
+                else:
                     for file in uploaded_file_list:
                         # Save all files with original name
-                        with open(os.path.join(upload_path, file.name),"wb") as f:
+                        with open(os.path.join(original_folder_path, file.name),"wb") as f:
                             f.write((file).getbuffer())
-                        
-                    # Transcribe folder
-                    with st.spinner(f"Transcrevendo Arquivos ... 💫"):
-                
-                        # Transcribe file list
-                        df = pd.DataFrame(transcribe.transcribe(upload_path, type_model))
-                        st.dataframe(df)
 
-                        # Write to database           
-                        database.write_to_db(db_path, case_name, table_name, df)
+                # Transcribe folder
+                with st.spinner(f"Transcrevendo Arquivos ... 💫"):
+                    # Transcribe file list
+                    df = pd.DataFrame(transcribe.transcribe(original_folder_path, type_model))
+                    st.dataframe(df)
 
-                        # Print Token
-                        st.title("IMPORTANTE ⚠️")
-                        st.subheader(f"Copie e GUARDE o Token a Seguir. ") 
-                        st.text("Você precisará dele para acessar as transcrições.")
-                        st.code(case_name)
-                        st.markdown("O Token é um código único que identifica essa trasncrição." 
-                                "Ele é gerado automaticamente e é único para cada conjunto de transcrições." 
-                                "NÃO O PERCA! Sem o Token, não será possível acessar essas transcrições." 
-                                "Os arquivos de áudio e vídeo não são salvos no banco de dados."
-                                "As transcrições ficam salvas no banco de dados por 30 dias."
-                                "Após esse período, os dados são apagados."
-                                "Você pode acessar as transcrições a qualquer momento, basta inserir o Token no menu Analisar."
-                                "Você poderá apagar as transcrições a qualquer momento no menu Configurações."
-                                "Acesse o menu Analisar ao lado e insira o token.")
+                    # Write to database           
+                    database.write_to_db(database_folder_path, token, df)
 
-                        # Delete temporary files
-                        #settings.clean_folder(upload_path)
-
-    elif option == "Zip":
-        
-        st.header('Transcrever Arquivo Zip')
-
-        case_name = token_leia.get_token_leia()
-
-        if case_name:
-            
-            type_model = settings.select_model()
-
-            # Only audio and video files
-            zip_file_name = st.file_uploader('Selecione os arquivos de áudio ou vídeo', 
-                                             type=["zip", "ufed"],
-                                             accept_multiple_files=False)
-        
-            # Check if files were uploaded
-            if zip_file_name is not None:
-                    
-                with open(os.path.join(upload_path, zip_file_name.name),"wb") as f:
-                   
-                    f.write((zip_file_name).getbuffer())
-                
-                try:
-                   
-                    zip_file_list = extract_zip.extract_media_files(zip_file_name, upload_path)
-                    st.success(f"Arquivos extraídos com sucesso!")
-                    st.write(zip_file_list)
-
-                except Exception as e:
-                   
-                    st.error("Erro ao extrair arquivos!")
-                    st.error(e)
-            
-                if st.button('Transcrever'):
-                
-                    with st.spinner(f"Transcrevendo Arquivos ... 💫"):
-                
-                        # Transcribe file list
-                        df = pd.DataFrame(transcribe.transcribe(upload_path, type_model))
-                        st.dataframe(df)
-
-                        # Write to database           
-                        database.write_to_db(db_path, case_name, table_name, df)
-
-                        # Print Token
-                        st.title("IMPORTANTE ⚠️")
-                        st.subheader(f"Copie e GUARDE o Token a Seguir. ") 
-                        st.text("Você precisará dele para acessar as transcrições.")
-                        st.code(case_name)
-                        st.write("O Token é um código único que identifica essa trasncrição." 
-                                "Ele é gerado automaticamente e é único para cada conjunto de transcrições." 
-                                "Não o perca! Sem o Token, não será possível acessar essas transcrições." 
-                                "Os arquivos de áudio e vídeo não são salvos no banco de dados."
-                                "As transcrições ficam salvas no banco de dados por 30 dias."
-                                "Após esse período, os dados são apagados."
-                                "Você pode acessar as transcrições a qualquer momento, basta inserir o Token no menu Analisar."
-                                "Você poderá apagar as transcrições a qualquer momento no menu Configurações."
-                                "Acesse o menu Analisar ao lado e insira o token.")
-
-                        # Delete temporary files
-                        #settings.clean_folder(upload_path)
-    
+                    # Print Token
+                    st.title("IMPORTANTE ⚠️")
+                    st.subheader(f"Copie e GUARDE o Token a Seguir. ") 
+                    st.text("Você precisará dele para acessar as transcrições.")
+                    st.code(token)
+                    st.markdown("O Token é um código único que identifica essa trasncrição." 
+                            "Ele é gerado automaticamente e é único para cada conjunto de transcrições." 
+                            "NÃO O PERCA! Sem o Token, não será possível acessar essas transcrições." 
+                            "Os arquivos de áudio e vídeo não são salvos no banco de dados."
+                            "As transcrições ficam salvas no banco de dados por 30 dias."
+                            "Após esse período, os dados são apagados."
+                            "Você pode acessar as transcrições a qualquer momento, basta inserir o Token no menu Analisar."
+                            "Você poderá apagar as transcrições a qualquer momento no menu Configurações."
+                            "Acesse o menu Analisar ao lado e insira o token.")
+              
     # Option Analize          
     elif option == 'Analisar':
-       
         st.subheader('Analisar')
-
-        case_name = st.text_input("Informe o Token do caso que deseja analisar")
+        token = st.text_input("Informe o Token do caso que deseja analisar")
         
         # Check if token exists
-        if case_name:
-                
-                analize.analize(db_path, table_name, case_name)
+        if token:
+            token_folder_path, database_folder_path, temporary_folder_path, original_folder_path = folders.get_folders(token, main_folder_path)
+            analize.analize(token, database_folder_path, temporary_folder_path, original_folder_path)
     
     # Option Settings
     elif option == 'Configurações':
        
         st.header('Configurações')
-        st.subheader("Remove Transcrições")
-        token = st.text_input("Informe o Token das trancrições que deseja remover")
         
-        # Check if token exists
-        if token:
+        # Option Install Models. DON'T USE IN PRODUCTION
+        #settings.install_models()
+        
+        st.subheader("Remove Tokens")
+        token = st.text_input("Informe o Token das trancrições que deseja remover")
 
+        # Check if token exists
+        if token:    
             try:
-                
-                settings.remove_token_file(token, db_path)
+                token_folder_path, database_folder_path, temporary_folder_path, original_folder_path = folders.get_folders(token, main_folder_path)
+                settings.remove_token(token_folder_path)
                 st.success("Transcrições removidas com sucesso!")
             
             except:
-            
                 st.error("Token não encontrado. Verifique se o token está correto.")
         
         # Options Remove All. DON'T USE IN PRODUCTION
-        settings.remove_all_db_tokens(db_path)
-        settings.remove_all_temp_files(upload_path, temporary_mp3_path)
+        # if st.button('Remover Todos os Tokens'):
+        #     settings.remove_token(main_folder_path)
    
 if __name__ == '__main__':
     main()

@@ -4,17 +4,13 @@ import os
 import pandas as pd
 import numpy as np
 
-from audio_formats import to_mp3_bytes
-
 def transcribe(folder, type_model):
     '''
     Função que transcreve uma lista de arquivos de áudio ou vídeo.
 
     Parameters:
-        file_list (list): Lista de arquivos de áudio ou vídeo.
-        folder (str): Caminho da pasta onde os arquivos estão.
-        type_model (str): Tipo de modelo a ser utilizado.
-        type_transcribe (str): Tipo de transcrição a ser realizada.
+        folder (str): Caminho da pasta com os arquivos de áudio ou vídeo.
+        type_model (str): Tipo de modelo a ser utilizado na transcrição.
 
     Returns:
         dic_transcribe (dict): Dicionário com o nome do arquivo e o texto transcrito.
@@ -25,28 +21,29 @@ def transcribe(folder, type_model):
 
     dic_transcribe = {'arquivo'     : [ ],
                       'transcricao' : [ ]}
+    
+    audio_file_extensions = (".opus",".wav",".mp3",".ogg",".wma",
+                             ".mp4", ".m4a", ".avi", ".mov", ".wmv")
 
 
     file_list = os.listdir(folder)
-    st.write(file_list)
 
     for file in file_list:
-    
-        try:
-    
-            st.warning(f"Transcrevendo {file}")   
 
-            result =  model.transcribe(os.path.join(folder,file)) 
+        # Check if file is audio or video and not a hidden file
+        if not file.startswith(".") and file.lower().endswith(audio_file_extensions):
+            try:  
+                st.warning(f"Transcrevendo {file}")   
+
+                result =  model.transcribe(os.path.join(folder,file)) 
+                dic_transcribe['arquivo'].append(file)
+                dic_transcribe['transcricao'].append(result['text'])
             
-            dic_transcribe['arquivo'].append(file)
-            dic_transcribe['transcricao'].append(result['text'])
+                st.success(f"Arquivo Transcrito: {file}")
         
-            st.success(f"Arquivo Transcrito: {file}")
-    
-        except Exception as e:
-    
-            st.error(f"Algo deu errado")
-            st.error(e)
+            except Exception as e:
+                st.error(f"Algo deu errado")
+                st.error(e)
         
     return dic_transcribe
     

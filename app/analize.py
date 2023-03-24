@@ -4,26 +4,28 @@ import pandas as pd
 import sqlite3
 
 # Import local modules
-from audio_formats import to_mp3
+import audio_formats
 
-def analize(db_path, table_name, token):
+def analize(token, database_folder_path, temporary_folder_path, original_folder_path):
     
     '''
     Consulta os casos cadastrados. 
     A função é chamada no arquivo app.py e apresenta na tela o resultado da consulta.
     
     Parameters:
-        db_path (str): Caminho para o banco de dados
-        table_name (str): Nome da tabela
-        case_name (str): Nome do caso
+        token (str): Token de acesso ao banco de dados.
+        database_folder_path (str): Caminho para a pasta onde estão os bancos de dados.
+        temporary_folder_path (str): Caminho para a pasta temporária.
+        original_folder_path (str): Caminho para a pasta onde estão os arquivos originais.
+        
     '''      
-    if os.path.isfile(os.path.join(db_path, token)):
+    if os.path.isfile(os.path.join(database_folder_path, token)):
 
         try:
             
             # Connect to database
-            conn = sqlite3.connect(os.path.join(db_path, token))
-            query = f'SELECT * FROM {table_name}'
+            conn = sqlite3.connect(os.path.join(database_folder_path, token))
+            query = f'SELECT * FROM transcripts'
             df = pd.read_sql(query, conn)
             
             # Show dataframe
@@ -38,15 +40,12 @@ def analize(db_path, table_name, token):
             # Play audio
             file_selected = st.selectbox("Selecione o arquivo para ouvir o áudio", df['arquivo'])
             
-            temporary_mp3_path = '/Users/andreluiz/projetos/leia/uploads/temporary_mp3'
-            token_folder = '/Users/andreluiz/projetos/leia/uploads/token_files'
 
-
-            mp3_audio_file = to_mp3(file_selected, token_folder, temporary_mp3_path)
+            mp3_audio_file = audio_formats.to_mp3(file_selected, original_folder_path, temporary_folder_path)
             
             
             # Play audio
-            audio_bytes = open(os.path.join(temporary_mp3_path, mp3_audio_file), 'rb').read()
+            audio_bytes = open(os.path.join(temporary_folder_path, mp3_audio_file), 'rb').read()
             st.audio(audio_bytes)
 
 

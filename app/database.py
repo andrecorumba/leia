@@ -3,20 +3,20 @@ import os
 import pandas as pd
 import streamlit as st
 
-def write_to_db(db_path, case_name, table_name, df):
+# Create database
+def write_to_db(database_folder_path, token, df):
     
     '''
     Recebe o nome do arquivo e o texto transcrito e salva no banco de dados.
 
     Parameters:
-        db_path (str): Caminho da pasta onde o banco de dados está.
-        case_name (str): Nome do caso.
-        table_name (str): Nome da tabela.
+        database_folder_path (str): Caminho da pasta onde o banco de dados está.
+        token (str): Nome do caso.
         df (pandas.DataFrame): Dataframe com os dados a serem salvos.
     '''
-    
+    table_name = 'transcripts'
     # Create connection
-    conn = sqlite3.connect(os.path.join(db_path, case_name))
+    conn = sqlite3.connect(os.path.join(database_folder_path, token))
 
     try:        
         df.to_sql(table_name, con=conn, if_exists='replace', index=False)

@@ -23,7 +23,14 @@ def find_audio_files_in_zip(zip_file_name):
 
 def extract_file_from_zip_no_extension(filename, zip_file, destination_folder):
     """
-    Procura pelo arquivo com o nome 'filename' (ignorando a extensão) dentro do arquivo .zip 'zip_file' e extrai apenas esse arquivo na pasta 'destination_folder'.
+    Procura pelo arquivo com o nome 'filename' (ignorando a extensão) dentro do arquivo .zip 'zip_file' 
+    e extrai apenas esse arquivo na pasta 'destination_folder'.
+
+    Parameters:
+        filename (str): Nome do arquivo a ser extraído.
+        zip_file (str): Nome do arquivo .zip.
+        destination_folder (str): Nome da pasta de destino.
+        
     """
     with zipfile.ZipFile(zip_file) as zf:
         for name in zf.namelist():
@@ -57,22 +64,7 @@ def print_zip_file_name_list(zip_file, txt_file_output=None):
         
         return zf.namelist() 
 
-# def extract_media_files(zip_file, destination_folder):
-#     media_extensions = (".opus",".wav",".mp3",".ogg",".wma",
-#                         ".mp4", ".m4a", ".avi", ".mov", ".wmv")
-#     media_files = []
-    
-#     with zipfile.ZipFile(zip_file) as zf:
-       
-#         for file_name in zf.namelist():
-       
-#             if file_name.lower().endswith(media_extensions):
-       
-#                 zf.extract(file_name, destination_folder)
-#                 st.write(f"Arquivo '{file_name}' extraído com sucesso para a pasta '{destination_folder}'.")
-#                 media_files.append(file_name)
-                
-#     return media_files
+
 
 def extract_media_files(zip_file, destination_folder):
     '''
@@ -104,13 +96,3 @@ def extract_media_files(zip_file, destination_folder):
                 media_files.append(target_path)
                 
     return media_files
-
-def main():
-    filename = '7d84a529-7881-44cb-aeb6-715635f09ba1'
-    zip_file = '/Volumes/Seagate Expansion Drive/AnexoLaudo499_2021_SETEC_RN/Midia/RelatorioPA/Apple_iPhone Xs Max(A1921)_2021-12-02_Relatório.ufdr'
-    destination_folder = '/Users/andreluiz/Downloads/extracao'
-
-    extract_file_from_zip_no_extension(filename, zip_file, destination_folder)
-
-if __name__ == '__main__':
-    main()
