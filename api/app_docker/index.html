@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../app_docker/">
+        <link rel="prev" href="../analize/">
       
       
-        <link rel="next" href="../audio_formats/">
+        <link rel="next" href="../app_web/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>App web - LeIA</title>
+        <title>App docker - LeIA</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app.app_web" class="md-skip">
+        <a href="#app.app_docker" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              App web
+              App docker
             
           </span>
         </div>
@@ -284,20 +284,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../app_docker/" class="md-nav__link">
-        App docker
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -308,12 +294,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          App web
+          App docker
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        App web
+        App docker
       </a>
       
         
@@ -330,14 +316,14 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.app_web" class="md-nav__link">
-    app.app_web
+  <a href="#app.app_docker" class="md-nav__link">
+    app.app_docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.app_web.main" class="md-nav__link">
+  <a href="#app.app_docker.main" class="md-nav__link">
     main()
   </a>
   
@@ -347,6 +333,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app_web/" class="md-nav__link">
+        App web
+      </a>
     </li>
   
 
@@ -467,14 +467,14 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app.app_web" class="md-nav__link">
-    app.app_web
+  <a href="#app.app_docker" class="md-nav__link">
+    app.app_docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#app.app_web.main" class="md-nav__link">
+  <a href="#app.app_docker.main" class="md-nav__link">
     main()
   </a>
   
@@ -498,12 +498,12 @@
   
 
 
-  <h1>App web</h1>
+  <h1>App docker</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="app.app_web"></a>
+<a id="app.app_docker"></a>
   <div class="doc doc-contents first">
 
   
@@ -522,7 +522,7 @@
 
 
 
-<h2 id="app.app_web.main" class="doc doc-heading">
+<h2 id="app.app_docker.main" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">main</span><span class="p">()</span></code>
 
 </h2>
@@ -530,12 +530,12 @@
 
   <div class="doc doc-contents ">
   
-      <p>Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+      <p>App Versão Docker. Inicia o menu lateral e as páginas. Interface do usuário. 
 O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
 As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 
       <details class="quote">
-        <summary>Source code in <code>app/app_web.py</code></summary>
+        <summary>Source code in <code>app/app_docker.py</code></summary>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 17</span>
 <span class="normal"> 18</span>
 <span class="normal"> 19</span>
@@ -680,7 +680,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 <span class="normal">158</span>
 <span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span> 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. </span>
+<span class="sd">    App Versão Docker. Inicia o menu lateral e as páginas. Interface do usuário. </span>
 <span class="sd">    O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.</span>
 <span class="sd">    As páginas são chamadas a partir da opção selecionada no menu lateral.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -689,7 +689,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
 
     <span class="c1"># Side Menu</span>
     <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>   
-        <span class="n">option</span> <span class="o">=</span> <span class="n">option_menu</span><span class="p">(</span><span class="s2">&quot;Versão Web v.1.0.0&quot;</span><span class="p">,</span> 
+        <span class="n">option</span> <span class="o">=</span> <span class="n">option_menu</span><span class="p">(</span><span class="s2">&quot;Versão Docker v.1.0.0&quot;</span><span class="p">,</span> 
                          <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sobre&quot;</span><span class="p">,</span> 
                                   <span class="s2">&quot;Áudio&quot;</span><span class="p">,</span>
                                   <span class="s2">&quot;Vídeo&quot;</span><span class="p">,</span>
@@ -715,7 +715,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
     <span class="c1"># Option Transcribe Files</span>
     <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Áudio&quot;</span> <span class="ow">or</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Vídeo&quot;</span> <span class="ow">or</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Zip&quot;</span><span class="p">:</span>  
         <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Transcrever Arquivos&#39;</span><span class="p">)</span>   
-        <span class="n">type_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">select_model</span><span class="p">(</span><span class="s1">&#39;web&#39;</span><span class="p">)</span>
+        <span class="n">type_model</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">select_model</span><span class="p">(</span><span class="s1">&#39;docker&#39;</span><span class="p">)</span>
 
         <span class="c1"># Only audio files</span>
         <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;Áudio&quot;</span><span class="p">:</span>     
@@ -807,7 +807,7 @@ As páginas são chamadas a partir da opção selecionada no menu lateral.</p>
         <span class="k">if</span> <span class="n">token</span><span class="p">:</span>    
             <span class="c1"># Check if like secrete token</span>
             <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="n">settings</span><span class="o">.</span><span class="n">read_secret_token</span><span class="p">(</span><span class="s1">&#39;secret-token.txt&#39;</span><span class="p">):</span>
-                <span class="n">settings</span><span class="o">.</span><span class="n">install_models</span><span class="p">(</span><span class="s1">&#39;web&#39;</span><span class="p">)</span>
+                <span class="n">settings</span><span class="o">.</span><span class="n">install_models</span><span class="p">(</span><span class="s1">&#39;docker&#39;</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">main_folder_path</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Remover Todos os Tokens&#39;</span><span class="p">):</span>

@@ -286,6 +286,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../app_docker/" class="md-nav__link">
+        App docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../app_web/" class="md-nav__link">
         App web
       </a>
@@ -393,6 +407,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#app.settings.read_secret_token" class="md-nav__link">
+    read_secret_token()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#app.settings.remove_token" class="md-nav__link">
     remove_token()
   </a>
@@ -490,6 +511,13 @@
         <li class="md-nav__item">
   <a href="#app.settings.install_models" class="md-nav__link">
     install_models()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app.settings.read_secret_token" class="md-nav__link">
+    read_secret_token()
   </a>
   
 </li>
@@ -642,7 +670,7 @@
 
 
 <h2 id="app.settings.install_models" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">install_models</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">install_models</span><span class="p">(</span><span class="n">app_type</span><span class="p">)</span></code>
 
 </h2>
 
@@ -653,27 +681,92 @@
 
       <details class="quote">
         <summary>Source code in <code>app/settings.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">install_models</span><span class="p">():</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">install_models</span><span class="p">(</span><span class="n">app_type</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
 <span class="sd">    Interface para o usuário ajustar as configurações da aplicação.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;Instalar Modelos de Aprendizagem de Máquina&#39;</span><span class="p">)</span>
-    <span class="n">type_model</span> <span class="o">=</span>  <span class="n">select_model</span><span class="p">()</span>
+    <span class="n">type_model</span> <span class="o">=</span>  <span class="n">select_model</span><span class="p">(</span><span class="n">app_type</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Instalar&#39;</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instalando modelo </span><span class="si">{</span><span class="n">type_model</span><span class="si">}</span><span class="s2"> ... 💫&quot;</span><span class="p">):</span>
             <span class="n">whisper</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">type_model</span><span class="p">)</span>
             <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modelo </span><span class="si">{</span><span class="n">type_model</span><span class="si">}</span><span class="s2"> instalado com sucesso!&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="app.settings.read_secret_token" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_secret_token</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lê o token secreto a partir de um arquivo.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>file_name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Caminho do arquivo do token secreto.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>app/settings.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_secret_token</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Lê o token secreto a partir de um arquivo.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        file_name (str): Caminho do arquivo do token secreto.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">token</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -720,16 +813,17 @@
 
       <details class="quote">
         <summary>Source code in <code>app/settings.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove_token</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove_token</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Remove todos os arquivos temporários usados pela aplicação por token.</span>
 
@@ -739,6 +833,7 @@
 
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
         <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Pasta com Tokens removidas com sucesso!&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -750,7 +845,7 @@
 
 
 <h2 id="app.settings.select_model" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">select_model</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">select_model</span><span class="p">(</span><span class="n">app_type</span><span class="p">)</span></code>
 
 </h2>
 
@@ -758,6 +853,30 @@
   <div class="doc doc-contents ">
   
       <p>Interface para o usuário selecionar o modelo de aprendizagem de máquina a ser usado na transcrição.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>app_type</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>tipo do app 'web ou 'docker'</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -793,20 +912,28 @@
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">select_model</span><span class="p">():</span>   
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">select_model</span><span class="p">(</span><span class="n">app_type</span><span class="p">):</span>   
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Interface para o usuário selecionar o modelo de aprendizagem de máquina a ser usado na transcrição.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        app_type (str): tipo do app &#39;web ou &#39;docker&#39;</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        (str): Nome do modelo de aprendizagem de máquina selecionado.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1"># type_model = st.select_slider(&#39;Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever&#39;, </span>
-    <span class="c1">#                               [&#39;tiny&#39;,&#39;base&#39;, &#39;small&#39;, &#39;medium&#39;,&#39;large&#39;], )</span>
+    <span class="k">if</span> <span class="n">app_type</span> <span class="o">==</span> <span class="s1">&#39;web&#39;</span><span class="p">:</span>
+        <span class="n">models_available</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tiny&#39;</span><span class="p">,</span><span class="s1">&#39;base&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">app_type</span> <span class="o">==</span> <span class="s1">&#39;docker&#39;</span><span class="p">:</span>
+        <span class="n">models_available</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tiny&#39;</span><span class="p">,</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span><span class="s1">&#39;large&#39;</span><span class="p">]</span> 
 
-    <span class="c1"># Just &#39;tiny&#39; and &#39;base&#39; models are available for now</span>
-    <span class="n">type_model</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">select_slider</span><span class="p">(</span><span class="s2">&quot;Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever. &quot;</span>
-                                  <span class="s2">&quot;Apenas os modelos &#39;tiny&#39; e &#39;base&#39; estão disponíveis no momento.&quot;</span><span class="p">,</span> 
-                                  <span class="p">[</span><span class="s1">&#39;tiny&#39;</span><span class="p">,</span><span class="s1">&#39;base&#39;</span><span class="p">],</span> <span class="p">)</span>
+    <span class="c1"># Type </span>
+    <span class="n">type_model</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">select_slider</span><span class="p">(</span><span class="s2">&quot;Selecione o modelo: Quanto maior, mais preciso, porém mais lento na hora de transcrever. &quot;</span><span class="p">,</span> 
+                                  <span class="n">models_available</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">type_model</span>
 </code></pre></div></td></tr></table></div>
       </details>
