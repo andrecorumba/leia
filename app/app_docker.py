@@ -16,7 +16,7 @@ import folders
 
 def main(): 
     '''
-    Função principal do app. Inicia o menu lateral e as páginas. Interface do usuário. 
+    App Versão Docker. Inicia o menu lateral e as páginas. Interface do usuário. 
     O menu lateral é criado com a função option_menu do pacote streamlit_option_menu.
     As páginas são chamadas a partir da opção selecionada no menu lateral.
     '''
@@ -25,7 +25,7 @@ def main():
         
     # Side Menu
     with st.sidebar:   
-        option = option_menu("Versão Web v.1.0.0", 
+        option = option_menu("Versão Docker v.1.0.0", 
                          options=["Sobre", 
                                   "Áudio",
                                   "Vídeo",
@@ -51,7 +51,7 @@ def main():
     # Option Transcribe Files
     elif option == "Áudio" or option == "Vídeo" or option == "Zip":  
         st.subheader('Transcrever Arquivos')   
-        type_model = settings.select_model('web')
+        type_model = settings.select_model('docker')
 
         # Only audio files
         if option == "Áudio":     
@@ -143,7 +143,7 @@ def main():
         if token:    
             # Check if like secrete token
             if token == settings.read_secret_token('secret-token.txt'):
-                settings.install_models('web')
+                settings.install_models('docker')
                 
                 if os.path.exists(main_folder_path):
                     if st.button('Remover Todos os Tokens'):
