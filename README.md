@@ -28,9 +28,10 @@ streamlit_option_menu: uma biblioteca adicional para streamlit que permite criar
 ## Requitos Importantes
 É necessário instalar na máquina o aplicativo ffmpeg que serve para conversão de vários tipos de áudios e é requisito para uso da biblioteca whisper. Faça o download em: https://ffmpeg.org. No MacOS instalamos a versão 5.2 por meio do Homebrew: brew install ffmpeg.
 
-# Logo
+## Logo
 A tírulo de curiosidade, o logo foi criado por inteligência artificial DALL-E https://labs.openai.com/
 
-# Imagem Docker
+## Imagem Docker
 Para baixar a imagem Docker é necessário ter o Docker instalado e digitar o seguinte comando no terminal.
+
 `docker pull andrecorumba/leia-docker`
