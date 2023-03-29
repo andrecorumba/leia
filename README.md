@@ -6,6 +6,7 @@ Repositório em: https://github.com/andrecorumba/leia
 
 Documentação em: https://andrecorumba.github.io/leia/
 
+Versão web teste em: https://andrecorumba-leia-appapp-web-b757de.streamlit.app
 
 ## Versão do Python
 Projeto implementado na versão 3.10.10.
