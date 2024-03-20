@@ -16,7 +16,7 @@ The project is implemented in Python version 3.12.2.
 
 ## To run the Streamlit App
 
-`streamlit run streamlit_app/main.py`
+`streamlit run streamlit_app/streamlit_main.py`
 
 ## Key Libraries Used
 
