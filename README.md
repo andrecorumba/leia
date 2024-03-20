@@ -2,6 +2,8 @@
 
 LeIA is an application that leverages artificial intelligence models for audio and video transcription. Users can transcribe new files or consult previously transcribed cases.
 
+**⏳Implementing the FastAPI application and routes at this moment. Please wait a fell days.**
+
 ## Repository and Documentation
 
 - **Repository**: [https://github.com/andrecorumba/leia](https://github.com/andrecorumba/leia)
@@ -11,6 +13,10 @@ LeIA is an application that leverages artificial intelligence models for audio a
 ## Python Version
 
 The project is implemented in Python version 3.12.2.
+
+## To run the Streamlit App
+
+`streamlit run streamlit_app/main.py`
 
 ## Key Libraries Used
 
@@ -30,6 +36,4 @@ The `ffmpeg` application must be installed on the machine for converting various
 
 To download the Docker image, Docker must be installed. Use the following command in the terminal:
 
-```
-docker pull andrecorumba/leia-docker
-```
+`docker pull andrecorumba/leia-docker`
