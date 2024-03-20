@@ -1,38 +1,35 @@
-# Projeto LeIA
-O LeIA é uma aplicação que usa modelos de inteligência artificial da openAI para transcrição de áudio e vídeo.
-Você pode transcrever novos arquivos ou consultar casos já transcritos.
+# LeIA Project
 
-Repositório em: https://github.com/andrecorumba/leia
+LeIA is an application that leverages artificial intelligence models for audio and video transcription. Users can transcribe new files or consult previously transcribed cases.
 
-Documentação em: https://andrecorumba.github.io/leia/
+## Repository and Documentation
 
-Versão web teste em: https://andrecorumba-leia-appapp-web-b757de.streamlit.app
+- **Repository**: [https://github.com/andrecorumba/leia](https://github.com/andrecorumba/leia)
+- **Documentation**: [https://andrecorumba.github.io/leia/](https://andrecorumba.github.io/leia/)
+- **Web Version for Testing**: [https://andrecorumba-leia-appapp-web-b757de.streamlit.app](https://andrecorumba-leia-appapp-web-b757de.streamlit.app)
 
-## Versão do Python
-Projeto implementado na versão 3.10.10.
+## Python Version
 
-## Principais Bibliotecas usadas no Projeto: 
-**os:** biblioteca usada para interagir com o sistema operacional, permitindo manipular caminhos de arquivos, diretórios, 
-variáveis ​​de ambiente, etc.
+The project is implemented in Python version 3.12.2.
 
-**whisper:** biblioteca usada para transcrição dos áudios e vídeos (https://github.com/openai/whisper)
+## Key Libraries Used
 
-**pandas:** biblioteca usada para trabalhar com dados em formato de tabela, permitindo manipulação, limpeza, análise e visualização de dados.
+- `os`: A library for interacting with the operating system, enabling the manipulation of file paths, directories, environment variables, etc.
+- `whisper`: A library for audio and video transcription ([https://github.com/openai/whisper](https://github.com/openai/whisper)).
+- `pandas`: A library for working with tabular data, supporting manipulation, cleaning, analysis, and visualization.
+- `sqlite3`: A library for working with SQLite databases, a widely used embedded relational database.
+- `streamlit`: A library for creating interactive web applications for data analysis and visualization, allowing users to build interactive data analysis dashboards and control panels.
+- `streamlit_option_menu`: An additional library for Streamlit that enables the creation of custom dropdown menus with multiple options.
+- `pydub`: A library for audio file manipulation, supporting various operations such as cutting, merging, and volume adjustment.
 
-**sqlite3:** biblioteca usada para trabalhar com bancos de dados SQLite, que é um banco de dados relacional incorporado amplamente utilizado.
+## Important Requirements
 
-**streamlit:** biblioteca usada para criar aplicativos da web interativos para análise de dados e visualização de dados, permitindo que os usuários criem painéis de controle e painéis de análise de dados interativos.
-streamlit_option_menu: uma biblioteca adicional para streamlit que permite criar menus suspensos personalizados com várias opções.
+The `ffmpeg` application must be installed on the machine for converting various audio types and is a requirement for using the `whisper` library. Download it from: [https://ffmpeg.org](https://ffmpeg.org). On MacOS, version 5.2 can be installed via Homebrew with `brew install ffmpeg`.
 
-**pydub:** biblioteca usada para trabalhar com arquivos de áudio, permitindo manipulação, conversão e edição de arquivos de áudio de várias maneiras, incluindo cortar, mesclar e ajustar o volume.
+## Docker Image
 
-## Requitos Importantes
-É necessário instalar na máquina o aplicativo ffmpeg que serve para conversão de vários tipos de áudios e é requisito para uso da biblioteca whisper. Faça o download em: https://ffmpeg.org. No MacOS instalamos a versão 5.2 por meio do Homebrew: brew install ffmpeg.
+To download the Docker image, Docker must be installed. Use the following command in the terminal:
 
-## Logo
-A tírulo de curiosidade, o logo foi criado por inteligência artificial DALL-E https://labs.openai.com/
-
-## Imagem Docker
-Para baixar a imagem Docker é necessário ter o Docker instalado e digitar o seguinte comando no terminal.
-
-`docker pull andrecorumba/leia-docker`
+```
+docker pull andrecorumba/leia-docker
+```
