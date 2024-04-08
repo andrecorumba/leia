@@ -16,9 +16,6 @@ RUN git clone https://github.com/andrecorumba/leia.git .
 # Instala as dependências
 RUN pip install -r requirements.txt
 
-# Copia o arquivo secret-token.txt para dentro do container na pasta /app
-COPY secret-token.txt /leia
-
 # Expõe a porta do Streamlit
 EXPOSE 8501
 
@@ -26,4 +23,4 @@ EXPOSE 8501
 HEALTHCHECK CMD curl --fail http://0.0.0.0:8501/_stcore/health
 
 # Define o comando para executar o Streamlit
-ENTRYPOINT ["streamlit", "run", "app/app_docker.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "streamlit_app/app_docker.py", "--server.port=8501", "--server.address=0.0.0.0"]
