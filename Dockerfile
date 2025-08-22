@@ -1,4 +1,4 @@
-FROM python:3.12.2-slim
+FROM python:3.14.0rc2-slim
 
 # Instala o FFmpeg
 RUN apt-get update && \
